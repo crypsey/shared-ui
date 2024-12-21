@@ -65,5 +65,8 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "dependencies": {
+    "react-bootstrap": "^2.10.7"
   }
 }

@@ -1,0 +1,209 @@
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.1px solid #d8d3d3;
+  padding: 0.3rem;
+  margin-top: 10px;
+  border-radius: 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.get-started-header {
+  background-color: #000000;
+  color: #ffffff;
+  width: 120px;
+  padding: 0.6rem 0;
+  border-radius: 25px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 0.3rem;
+  color: #e2673e;
+  font-family: "Wallman Sans", sans-serif;
+}
+
+.logo-img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.logo-container {
+  padding-top: 0.6rem;
+}
+
+/* Small devices (phones, 320px and up) */
+@media (min-width: 320px) {
+  .header {
+    padding: 0.3rem 0.8rem;
+    margin-top: 8px;
+    display: flex;
+  }
+
+  .get-started-header {
+    width: 90px;
+    font-size: 10px;
+  }
+
+  .logo {
+    font-size: 24px;
+    padding-top: 0.4rem;
+  }
+
+  .logo-img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Medium phones (375px and up) */
+@media (min-width: 375px) {
+  .header {
+    padding: 0.3rem 1rem;
+  }
+
+  .get-started-header {
+    width: 100px;
+    font-size: 12px;
+    padding: 0.5rem 0;
+  }
+
+  .logo {
+    font-size: 26px;
+    padding-top: 0.8rem;
+  }
+
+  .logo-container {
+    padding: 0.5rem;
+  }
+
+  .logo-img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Large phones (425px and up) */
+@media (min-width: 425px) {
+  .header {
+    padding: 0.3rem 1.2rem;
+  }
+
+  .get-started-header {
+    width: 110px;
+    font-size: 13px;
+  }
+
+  .logo {
+    font-size: 31px;
+  }
+  .logo-img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) {
+  .header {
+    margin-top: 10px;
+    height: 65px;
+  }
+
+  .get-started-header {
+    width: 120px;
+    font-size: 14px;
+    padding: 0.6rem 0;
+  }
+
+  .logo {
+    font-size: 35px;
+    padding-top: 0.2rem;
+  }
+
+  logo-img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Small laptops (1024px and up) */
+@media (min-width: 1024px) {
+  .header {
+    height: 65px;
+  }
+  .get-started-header {
+    width: 130px;
+    padding: 0.7rem 0;
+    font-size: 17px;
+  }
+
+  .logo {
+    font-size: 38px;
+  }
+}
+
+/* Large laptops and desktops (1440px and up) */
+@media (min-width: 1440px) {
+  .header {
+    height: 65px;
+  }
+
+  .get-started-header {
+    width: 140px;
+    font-size: 16px;
+  }
+
+  .logo {
+    font-size: 40px;
+  }
+}
+
+/* For very large screens (1920px and up) */
+@media (min-width: 1920px) {
+  .get-started-header {
+    width: 150px;
+    padding: 0.8rem 0;
+  }
+
+  .logo {
+    font-size: 42px;
+  }
+}
+
+/* For landscape mode on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    /* padding: 0.2rem 1rem; */
+    margin-top: 5px;
+  }
+
+  .get-started-header {
+    padding: 0.4rem 0;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+}
+
+/* For high-DPI screens (retina displays) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .header {
+    border-width: 0.5px;
+  }
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .get-started-header {
+    transition: none;
+  }
+}

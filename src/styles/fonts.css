@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Wallman Sans";
+  src:
+    url("../fonts/Wallman-Bold-free.ttf") format("ttf"),
+    url("../fonts/Wallman-Bold-free.woff") format("woff");
+  font-weight: 400;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: "SfproRegular Sans";
+  src: url("../fonts/SF-Pro-Display-Regular.otf") format("otf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SfproSemibold Sans";
+  src: url("../fonts/SF-Pro-Text-Semibold.otf") format("otf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SfproDisplayLightItalic Sans";
+  src: url("../fonts/SF-Pro-Text-LightItalic.otf") format("otf");
+  font-style: normal;
+}
