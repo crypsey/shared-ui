@@ -1,5 +1,4 @@
 import React from "react";
-import { Clock } from "lucide-react";
 import "./UserTransactions.css";
 
 export enum TransactionStatus {

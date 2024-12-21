@@ -6,7 +6,7 @@ import {
   TransactionProps,
 } from "./UserTransactions";
 import EmptyState from "../EmptyState/EmptyState";
-import { CreditCard, Inbox, FileX, Search } from "lucide-react";
+import { CreditCard } from "lucide-react";
 
 const meta: Meta<typeof UserTransactions> = {
   title: "Components/UserTransactions",

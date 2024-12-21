@@ -1,26 +1,26 @@
 @font-face {
   font-family: "Wallman Sans";
   src:
-    url("../fonts/Wallman-Bold-free.ttf") format("ttf"),
+    url("../fonts/Wallman-Bold-free.ttf") format("truetype"),
     url("../fonts/Wallman-Bold-free.woff") format("woff");
-  font-weight: 400;
-  font-style: bold;
+  font-weight: 700; /* Changed to 700 for bold */
+  font-style: normal;
 }
 
 @font-face {
   font-family: "SfproRegular Sans";
-  src: url("../fonts/SF-Pro-Display-Regular.otf") format("otf");
+  src: url("../fonts/SF-Pro-Display-Regular.otf") format("opentype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "SfproSemibold Sans";
-  src: url("../fonts/SF-Pro-Text-Semibold.otf") format("otf");
+  src: url("../fonts/SF-Pro-Text-Semibold.otf") format("opentype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "SfproDisplayLightItalic Sans";
-  src: url("../fonts/SF-Pro-Text-LightItalic.otf") format("otf");
-  font-style: normal;
+  src: url("../fonts/SF-Pro-Text-LightItalic.otf") format("opentype");
+  font-style: italic; /* Changed to italic since it's a light italic font */
 }

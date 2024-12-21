@@ -2,11 +2,6 @@ import React from "react";
 import { RingLoader } from "react-spinners";
 import "./RecentActivity.css";
 
-interface TransactionParticipant {
-  name: string;
-  initials: string;
-}
-
 export interface Transaction {
   sender: string;
   amount: number;
@@ -33,7 +28,6 @@ export interface RecentActivityProps {
 
 export const RecentActivity: React.FC<RecentActivityProps> = ({
   transactions = [],
-  isConnected,
   formatCurrency = (amount) => `$${amount.toFixed(2)}`,
   getTransactionInfo,
   LoadingComponent = ({ loading }) => (

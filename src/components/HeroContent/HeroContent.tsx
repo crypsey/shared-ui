@@ -51,7 +51,6 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   fadeAnimationDuration = 200,
   buttonText,
   description,
-  className = "",
   onButtonClick,
 }) => {
   const [currentMethod, setCurrentMethod] = useState(rotatingMethods[0]);
