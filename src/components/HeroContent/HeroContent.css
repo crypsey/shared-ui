@@ -1,0 +1,154 @@
+.payment-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  flex: display;
+  flex-direction: column;
+  align-items: baseline;
+  padding-top: 10rem;
+}
+
+.payment-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #fda172;
+  color: #4a5568;
+  font-size: 1rem;
+  /* margin-bottom: 1.5rem; */
+}
+
+.payment-heading {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: -1rem;
+}
+
+.payment-gradient-text {
+  font-size: 3.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #f687b3, #fda172, #f6e05e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.payment-gradient-text.visible {
+  opacity: 0.8;
+  transform: translateY(0);
+}
+
+.payment-button {
+  background-color: black;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment-button:hover {
+  background-color: #2d3748;
+}
+
+.payment-description {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #4a5568;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .payment-heading,
+  .payment-gradient-text {
+    font-size: 2.5rem;
+  }
+
+  .payment-description {
+    font-size: 1.25rem;
+  }
+}
+
+/* Large screens (laptops/desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {
+  .payment-container {
+    padding: 3rem;
+    padding-top: 12rem;
+  }
+}
+
+/* Medium screens (tablets/smaller laptops, between 768px and 1199px) */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+}
+
+/* Small screens (tablets, between 481px and 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .payment-container {
+    padding: 1.5rem;
+    max-width: 95%;
+    padding-top: 7rem;
+  }
+
+  .payment-heading,
+  .payment-gradient-text {
+    font-size: 2.5rem;
+  }
+
+  .payment-tag {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .payment-button {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  .payment-description {
+    font-size: 1.125rem;
+    margin-top: 3rem;
+    max-width: 100%;
+  }
+}
+
+/* Extra small screens (mobile phones, 480px and below) */
+@media screen and (max-width: 480px) {
+  .payment-container {
+    padding: 1rem;
+    max-width: 100%;
+    padding-top: 7rem;
+  }
+
+  .payment-heading,
+  .payment-gradient-text {
+    font-size: 2rem;
+  }
+
+  .payment-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    /* margin-bottom: 1rem;
+    margin: auto; */
+  }
+
+  .payment-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+  }
+
+  .payment-description {
+    font-size: 1rem;
+    margin-top: 2rem;
+    line-height: 1.4;
+  }
+}

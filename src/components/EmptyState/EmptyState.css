@@ -1,0 +1,67 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: #111827;
+}
+
+.empty-state {
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #f9fafb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.empty-message {
+  font-size: 14px;
+  color: #6b7280;
+  max-width: 320px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+}
+
+.send-money-button {
+  background-color: #000000;
+  color: #ffffff;
+  margin: auto;
+  padding: 0.6rem 0;
+  border-radius: 25px;
+  font-size: 14px;
+  text-align: center;
+  width: 20vh;
+}
+
+.send-money-button:hover {
+  background-color: #e2673e;
+}
+
+.send-money-button:active {
+  background-color: #e2673e;
+}
+
+@media (max-width: 640px) {
+  .container {
+    margin: 0;
+    border-radius: 0;
+  }
+}
