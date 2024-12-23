@@ -46,9 +46,11 @@ module.exports = {
       tsconfig: "./tsconfig.json",
     }),
     url({
-      include: ["**/*.ttf", "**/*.woff", "**/*.otf"],
-      limit: 0,
+      include: ["**/*.ttf", "**/*.woff", "**/*.otf", "**/*.woff2"],
+      limit: Infinity,
       fileName: "[name][extname]",
+      publicPath: "../fonts/",
+      destDir: "dist/fonts/",
     }),
     css({
       output: "styles.css",
