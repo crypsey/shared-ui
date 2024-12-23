@@ -1,3 +1,18 @@
+function cssPathTransform() {
+  return {
+    name: "css-path-transform",
+    generateBundle(options, bundle) {
+      const cssFile = bundle["styles.css"];
+      if (cssFile) {
+        cssFile.source = cssFile.source.replace(
+          /url\(['"]?\.\.\/fonts\/([^'"]+)['"]?\)/g,
+          "url('./fonts/$1')"
+        );
+      }
+    },
+  };
+}
+
 const typescript = require("@rollup/plugin-typescript");
 const resolve = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
@@ -49,11 +64,12 @@ module.exports = {
     url({
       include: ["**/*.ttf", "**/*.woff", "**/*.otf"],
       limit: 0,
-      fileName: "[name][extname]",
+      fileName: "fonts/[name][extname]",
     }),
     css({
       output: "styles.css",
     }),
+    cssPathTransform(),
     copy({
       targets: [
         {

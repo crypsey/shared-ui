@@ -3,7 +3,7 @@
   src:
     url("../fonts/Wallman-Bold-free.ttf") format("truetype"),
     url("../fonts/Wallman-Bold-free.woff") format("woff");
-  font-weight: 700; /* Changed to 700 for bold */
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -22,5 +22,5 @@
 @font-face {
   font-family: "SfproDisplayLightItalic Sans";
   src: url("../fonts/SF-Pro-Text-LightItalic.otf") format("opentype");
-  font-style: italic; /* Changed to italic since it's a light italic font */
+  font-style: italic;
 }
