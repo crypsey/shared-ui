@@ -4,6 +4,7 @@ const commonjs = require("@rollup/plugin-commonjs");
 const css = require("rollup-plugin-css-only");
 const url = require("@rollup/plugin-url");
 const babel = require("@rollup/plugin-babel");
+const copy = require("rollup-plugin-copy");
 
 module.exports = {
   input: "src/index.ts",
@@ -46,14 +47,21 @@ module.exports = {
       tsconfig: "./tsconfig.json",
     }),
     url({
-      include: ["**/*.ttf", "**/*.woff", "**/*.otf", "**/*.woff2"],
-      limit: Infinity,
+      include: ["**/*.ttf", "**/*.woff", "**/*.otf"],
+      limit: 0,
       fileName: "[name][extname]",
-      publicPath: "../fonts/",
-      destDir: "dist/fonts/",
     }),
     css({
       output: "styles.css",
+    }),
+    copy({
+      targets: [
+        {
+          src: "src/fonts/*",
+          dest: "dist/fonts",
+        },
+      ],
+      verbose: true,
     }),
   ],
 };
