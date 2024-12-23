@@ -3,6 +3,7 @@ const resolve = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
 const css = require("rollup-plugin-css-only");
 const url = require("@rollup/plugin-url");
+const babel = require("@rollup/plugin-babel");
 
 module.exports = {
   input: "src/index.ts",
@@ -28,6 +29,13 @@ module.exports = {
     "prop-types",
   ],
   plugins: [
+    babel({
+      presets: ["@babel/preset-react"],
+      plugins: [
+        ["@babel/plugin-transform-react-jsx", { runtime: "automatic" }],
+      ],
+      babelHelpers: "bundled",
+    }),
     resolve({
       browser: true,
     }),
