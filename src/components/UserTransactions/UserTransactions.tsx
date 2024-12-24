@@ -128,3 +128,5 @@ export const UserTransactions: React.FC<UserTransactionsProps> = ({
     </div>
   );
 };
+
+export default UserTransactions;

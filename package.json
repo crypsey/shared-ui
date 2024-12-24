@@ -78,6 +78,7 @@
   },
   "dependencies": {
     "lucide-react": "^0.469.0",
+    "qrcode.react": "^4.2.0",
     "react-bootstrap": "^2.10.7",
     "react-spinners": "^0.15.0"
   },

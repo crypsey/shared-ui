@@ -88,3 +88,4 @@ export const RecentActivity: React.FC<RecentActivityProps> = ({
     </div>
   );
 };
+export default RecentActivity;
