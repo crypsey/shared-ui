@@ -1,90 +1,112 @@
-import React, { useState } from "react";
+import React, { useState, JSX } from "react";
 import "./CryptoPaymentSelector.css";
+import { Shield, Info } from "lucide-react";
 
-interface CryptoOption {
-  id: "btc" | "eth" | "usdt";
+export interface CryptoOption {
   name: string;
   symbol: string;
-  price?: string;
-  icon: string;
+  fee: string;
+  icon: () => JSX.Element;
+  color: string;
 }
 
-export type CryptoId = CryptoOption["id"];
+interface PaymentOptionProps extends CryptoOption {
+  isSelected?: boolean;
+  onSelect?: (symbol: string) => void;
+}
 
-const CryptoPaymentSelector: React.FC = () => {
-  const [selectedCrypto, setSelectedCrypto] = useState<CryptoId | null>(null);
+interface PaymentSelectorProps {
+  onPaymentSelect?: (symbol: string) => void;
+  onSubmit?: () => void;
+  options?: CryptoOption[];
+}
 
-  const cryptoOptions: CryptoOption[] = [
-    {
-      id: "btc",
-      name: "Bitcoin",
-      symbol: "BTC",
-      price: "45,000",
-      icon: "₿",
-    },
-    {
-      id: "eth",
-      name: "Ethereum",
-      symbol: "ETH",
-      price: "2,800",
-      icon: "Ξ",
-    },
-    {
-      id: "usdt",
-      name: "Tether",
-      symbol: "USDT",
-      price: "1.00",
-      icon: "$",
-    },
-  ];
+// export type CryptoId = CryptoOption["id"];
 
-  const handleCryptoSelect = (cryptoId: CryptoId): void => {
-    setSelectedCrypto(cryptoId);
+const PaymentOption: React.FC<PaymentOptionProps> = ({
+  name,
+  symbol,
+  fee,
+  icon: Icon,
+  color,
+  isSelected,
+  onSelect,
+}) => {
+  return (
+    <div
+      className={`payment-option ${isSelected ? "selected" : ""}`}
+      onClick={() => onSelect?.(symbol)}
+      role="button"
+      tabIndex={0}
+      aria-selected={isSelected}
+    >
+      <div className="crypto-info">
+        <div className={`crypto-icon ${color}`}>
+          {/* <Icon className="w-4 h-4" /> */}
+        </div>
+        <div>
+          <h3 className="crypto-name">{name}</h3>
+          <span className="crypto-symbol">{symbol}</span>
+        </div>
+      </div>
+      <div className="fee-info">
+        <div className="fee-label">Network Fee</div>
+        <div className="fee-amount">{fee}</div>
+      </div>
+    </div>
+  );
+};
+
+const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
+  onPaymentSelect,
+  onSubmit,
+  options = [],
+}) => {
+  const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
+  const handleSelect = (symbol: string) => {
+    setSelectedSymbol(symbol);
+    onPaymentSelect?.(symbol);
   };
 
-  const getSelectedCryptoName = (): string => {
-    if (!selectedCrypto) return "Payment";
-    const selected = cryptoOptions.find((c) => c.id === selectedCrypto);
-    return selected ? selected.name : "Payment";
+  const handleSubmit = () => {
+    if (selectedSymbol) {
+      onSubmit?.();
+    }
   };
 
   return (
-    <div className="crypto-container">
-      <div className="crypto-title">Select Payment Method</div>
+    <div className="payment-container">
+      <div className="payment-header">
+        <h2 className="payment-title">Select Payment Method</h2>
+        <div className="security-badge">
+          <Shield className="w-5 h-5 text-green-500" />
+          <span>Secure Payment</span>
+        </div>
+      </div>
 
-      <div className="crypto-options">
-        {cryptoOptions.map((crypto) => (
-          <div
-            key={crypto.id}
-            className={`crypto-option ${selectedCrypto === crypto.id ? "selected" : ""}`}
-            onClick={() => handleCryptoSelect(crypto.id)}
-          >
-            <div className="crypto-option-content">
-              <div className="crypto-info">
-                <span className={`crypto-icon crypto-icon-${crypto.id}`}>
-                  {crypto.icon}
-                </span>
-                <div>
-                  <h3 className="crypto-name">{crypto.name}</h3>
-                  <p className="crypto-symbol">{crypto.symbol}</p>
-                </div>
-              </div>
-              <div className="crypto-price">
-                <p className="crypto-price-amount">${crypto.price}</p>
-                <p className="crypto-price-label">Current Price</p>
-              </div>
-            </div>
-          </div>
+      <div className="payment-grid">
+        {options.map((option) => (
+          <PaymentOption
+            key={option.symbol}
+            {...option}
+            isSelected={selectedSymbol === option.symbol}
+            onSelect={handleSelect}
+          />
         ))}
       </div>
 
       <button
-        className="continue-button"
-        disabled={!selectedCrypto}
-        onClick={() => console.log(`Selected crypto: ${selectedCrypto}`)}
+        className={`submit-button ${!selectedSymbol ? "disabled" : ""}`}
+        onClick={handleSubmit}
+        disabled={!selectedSymbol}
       >
-        Continue with {getSelectedCryptoName()}
+        Continue with Payment
       </button>
+
+      <p className="security-note">
+        <Info className="w-4 h-4" />
+        Your funds are protected by our secure payment system
+      </p>
     </div>
   );
 };
