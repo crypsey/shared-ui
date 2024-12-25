@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CryptoPaymentSelector.css";
 
-export interface CryptoOption {
+interface CryptoOption {
   id: "btc" | "eth" | "usdt";
   name: string;
   symbol: string;
