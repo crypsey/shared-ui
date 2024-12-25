@@ -42,7 +42,6 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
     >
       <div className="crypto-info">
         <div className={`crypto-icon ${color}`}>
-          {/* <Icon className="w-4 h-4" /> */}
           <img src={icon} style={{ width: 50, height: 50 }} />
         </div>
         <div>
@@ -77,37 +76,35 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
 
   return (
     <div className="payment-container">
-      <div className="payment-header">
-        <h2 className="payment-title">Select Payment Method</h2>
-        <div className="security-badge">
-          <Shield className="w-5 h-5 text-green-500" />
-          <span>Secure Payment</span>
+      <div style={{ padding: "1.4rem" }}>
+        <div className="payment-header">
+          <h2 className="payment-title">Select Payment Method</h2>
         </div>
+
+        <div className="payment-grid">
+          {options.map((option) => (
+            <PaymentOption
+              key={option.symbol}
+              {...option}
+              isSelected={selectedSymbol === option.symbol}
+              onSelect={handleSelect}
+            />
+          ))}
+        </div>
+
+        <button
+          className={`submit-button ${!selectedSymbol ? "disabled" : ""}`}
+          onClick={handleSubmit}
+          disabled={!selectedSymbol}
+        >
+          Continue with Payment
+        </button>
+
+        <p className="security-note">
+          <Info className="w-4 h-4" />
+          Your funds are protected by our secure payment system
+        </p>
       </div>
-
-      <div className="payment-grid">
-        {options.map((option) => (
-          <PaymentOption
-            key={option.symbol}
-            {...option}
-            isSelected={selectedSymbol === option.symbol}
-            onSelect={handleSelect}
-          />
-        ))}
-      </div>
-
-      <button
-        className={`submit-button ${!selectedSymbol ? "disabled" : ""}`}
-        onClick={handleSubmit}
-        disabled={!selectedSymbol}
-      >
-        Continue with Payment
-      </button>
-
-      <p className="security-note">
-        <Info className="w-4 h-4" />
-        Your funds are protected by our secure payment system
-      </p>
     </div>
   );
 };
