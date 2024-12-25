@@ -6,7 +6,7 @@ export interface CryptoOption {
   name: string;
   symbol: string;
   fee: string;
-  icon: () => JSX.Element;
+  icon: string;
   color: string;
 }
 
@@ -27,7 +27,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
   name,
   symbol,
   fee,
-  icon: Icon,
+  icon,
   color,
   isSelected,
   onSelect,
@@ -43,6 +43,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
       <div className="crypto-info">
         <div className={`crypto-icon ${color}`}>
           {/* <Icon className="w-4 h-4" /> */}
+          <img src={icon} style={{ width: 50, height: 50 }} />
         </div>
         <div>
           <h3 className="crypto-name">{name}</h3>
