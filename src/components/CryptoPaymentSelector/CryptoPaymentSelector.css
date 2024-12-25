@@ -232,6 +232,11 @@
   text-align: center;
 }
 
+.payment-option.selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
 /* Small devices (phones, 320px and up) */
 @media (min-width: 320px) {
   .payment-grid {
