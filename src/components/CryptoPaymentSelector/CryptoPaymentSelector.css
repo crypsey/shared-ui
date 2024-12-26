@@ -120,13 +120,13 @@
 
 /* ========== */
 
-.payment-container {
+.payment-crypto-container {
   max-width: 48rem;
   margin: 0 auto;
   padding: 1.5rem;
 }
 
-.payment-header {
+.payment-crypto-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,15 +146,16 @@
   font-size: 0.875rem;
 }
 
-.payment-grid {
+.payment-crypto-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-bottom: 1.5rem;
   margin: auto;
+  padding-bottom: 1.5rem;
 }
 
-.payment-option {
+.payment-crypto-option {
   /* width: 8rem; */
   width: auto;
   height: 7rem;
@@ -167,7 +168,7 @@
   height: auto;
 }
 
-.payment-option:hover {
+.payment-crypto-option:hover {
   border-color: #3b82f6;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
@@ -232,58 +233,58 @@
   text-align: center;
 }
 
-.payment-option.selected {
+.payment-crypto-option.selected {
   border-color: #3b82f6;
   background-color: #eff6ff;
 }
 
 /* Small devices (phones, 320px and up) */
 @media (min-width: 320px) {
-  .payment-grid {
+  .payment-crypto-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .payment-option {
+  .payment-crypto-option {
     width: none !important;
   }
 }
 
 /* Medium phones (375px and up) */
 @media (min-width: 375px) {
-  .payment-grid {
+  .payment-crypto-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .payment-option {
+  .payment-crypto-option {
     width: none;
   }
 }
 
 /* Large phones (425px and up) */
 @media (min-width: 425px) {
-  .payment-grid {
+  .payment-crypto-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .payment-option {
+  .payment-crypto-option {
     width: none;
   }
 }
 
 /* Tablets (768px and up) */
 @media (min-width: 768px) {
-  .payment-grid {
+  .payment-crypto-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Small laptops (1024px and up) */
 @media (min-width: 1024px) {
-  .payment-grid {
+  .payment-crypto-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Large laptops and desktops (1440px and up) */
 @media (min-width: 1440px) {
-  .payment-grid {
+  .payment-crypto-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }

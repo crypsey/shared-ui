@@ -34,7 +34,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
 }) => {
   return (
     <div
-      className={`payment-option ${isSelected ? "selected" : ""}`}
+      className={`payment-crypto-option ${isSelected ? "selected" : ""}`}
       onClick={() => onSelect?.(symbol)}
       role="button"
       tabIndex={0}
@@ -75,13 +75,13 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
   };
 
   return (
-    <div className="payment-container">
+    <div className="payment-crypto-container">
       <div style={{ padding: "1.4rem" }}>
-        <div className="payment-header">
-          <h2 className="payment-title">Select Payment Method</h2>
+        <div className="payment-crypto-header">
+          <h2 className="payment-crypto-title">Select Payment Method</h2>
         </div>
 
-        <div className="payment-grid">
+        <div className="payment-crypto-grid">
           {options.map((option) => (
             <PaymentOption
               key={option.symbol}
