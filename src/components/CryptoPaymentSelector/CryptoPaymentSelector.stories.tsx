@@ -15,6 +15,7 @@ const options: CryptoOption[] = [
     fee: "~$2.50",
     icon: "https://api.cryptapi.io/media/token_logos/bch.png",
     color: "bg-orange-100",
+    address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
   },
   {
     name: "Ethereum",
@@ -22,6 +23,7 @@ const options: CryptoOption[] = [
     fee: "~$1.50",
     icon: "https://api.cryptapi.io/media/token_logos/bch.png",
     color: "bg-purple-100",
+    address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
   },
   {
     name: "Tether",
@@ -29,6 +31,7 @@ const options: CryptoOption[] = [
     fee: "~$1.00",
     icon: "https://api.cryptapi.io/media/token_logos/bch.png",
     color: "bg-green-100",
+    address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
   },
   {
     name: "Cardano",
@@ -36,6 +39,7 @@ const options: CryptoOption[] = [
     fee: "~$0.30",
     icon: "https://api.cryptapi.io/media/token_logos/bch.png",
     color: "bg-blue-100",
+    address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
   },
   {
     name: "Solana",
@@ -43,6 +47,7 @@ const options: CryptoOption[] = [
     fee: "~$0.25",
     icon: "https://api.cryptapi.io/media/token_logos/bch.png",
     color: "bg-purple-100",
+    address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
   },
   {
     name: "Dogecoin",
@@ -50,6 +55,7 @@ const options: CryptoOption[] = [
     fee: "~$0.20",
     icon: "https://api.cryptapi.io/media/token_logos/bch.png",
     color: "bg-yellow-100",
+    address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
   },
 ];
 

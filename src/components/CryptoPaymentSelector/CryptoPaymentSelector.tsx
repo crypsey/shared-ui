@@ -8,15 +8,16 @@ export interface CryptoOption {
   fee: string;
   icon: string;
   color: string;
+  address: string;
 }
 
 interface PaymentOptionProps extends CryptoOption {
   isSelected?: boolean;
-  onSelect?: (symbol: string) => void;
+  onSelect?: (symbol: string, address: string) => void;
 }
 
 interface PaymentSelectorProps {
-  onPaymentSelect?: (symbol: string) => void;
+  onPaymentSelect?: (symbol: string, address?: string) => void;
   onSubmit?: () => void;
   options?: CryptoOption[];
 }
@@ -30,12 +31,15 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
   icon,
   color,
   isSelected,
+  address,
   onSelect,
 }) => {
   return (
     <div
       className={`payment-crypto-option ${isSelected ? "selected" : ""}`}
-      onClick={() => onSelect?.(symbol)}
+      onClick={() => {
+        onSelect?.(symbol, address);
+      }}
       role="button"
       tabIndex={0}
       aria-selected={isSelected}
@@ -63,9 +67,9 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
   options = [],
 }) => {
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
-  const handleSelect = (symbol: string) => {
+  const handleSelect = (symbol: string, address: string) => {
     setSelectedSymbol(symbol);
-    onPaymentSelect?.(symbol);
+    onPaymentSelect?.(symbol, address);
   };
 
   const handleSubmit = () => {
