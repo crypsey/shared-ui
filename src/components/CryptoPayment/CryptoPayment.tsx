@@ -61,17 +61,17 @@ const CryptoPayment: React.FC<CryptoPaymentProps> = ({
       interval = setInterval(() => {
         setTimeLeft((prevTime: number) => {
           if (prevTime <= 1) {
+            setTimeLeft(initialTime);
             onTimeEnd?.();
+            return initialTime;
           }
           return prevTime - 1;
         });
       }, 1000);
-    } else if (timeLeft === 0) {
-      setIsRunning(false);
     }
 
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft, onTimeEnd]);
+  }, [isRunning, timeLeft, onTimeEnd, initialTime]);
 
   const formatTime = (seconds: number): string => {
     const mins: number = Math.floor(seconds / 60);
@@ -135,8 +135,8 @@ const CryptoPayment: React.FC<CryptoPaymentProps> = ({
 
           {/* Timer */}
           <div className="timer-container">
-            <p className="timer-label">Time remaining:</p>
-            <div>{formatTime(timeLeft)}</div>
+            <p className="timer-label">This order will be valid for:</p>
+            <div>00:{formatTime(timeLeft)}</div>
           </div>
 
           {/* Warning */}
