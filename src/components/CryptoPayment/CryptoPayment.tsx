@@ -122,7 +122,7 @@ const CryptoPayment: React.FC<CryptoPaymentProps> = ({
               {copied ? (
                 <Check className="success-icon" size={16} aria-hidden="true" />
               ) : (
-                <Copy size={16} aria-hidden="true" />
+                <Copy size={16} aria-hidden="true" color="green" />
               )}
             </button>
           </div>
