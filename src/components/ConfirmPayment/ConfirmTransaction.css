@@ -1,0 +1,182 @@
+.payment-confirmation {
+  margin: 0 auto;
+  background-color: white;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  width: 50vh;
+  background-color: white;
+  padding: 1.3rem;
+  border-radius: 0.5rem;
+}
+
+.payment-confirmation h1 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #000;
+}
+
+.payment-confirmation h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  color: #000;
+  text-align: justify;
+}
+
+.bank-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.icon-container {
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.bank-label {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.sending-section,
+.amount-section {
+  margin-bottom: 32px;
+}
+
+.bank-info-label {
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.creditcard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-item {
+  text-align: left;
+}
+
+.account-number {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.account-type {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+.confirmation-type {
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 0.5rem;
+}
+
+.main-amount {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.fee-item {
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 16px;
+}
+
+.pay-button {
+  width: 100%;
+  background-color: #f87171;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 16px 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pay-button:hover {
+  background-color: #ef4444;
+}
+
+.send-money-button {
+  background-color: #000000;
+  color: #ffffff;
+  margin: auto;
+  border-radius: 25px;
+  font-size: 14px;
+  text-align: center;
+  width: 20vh;
+  padding: 10px 20px;
+}
+
+.send-money-cancle {
+  background-color: #dd1c1c;
+  color: #ffffff;
+  margin: auto;
+  border-radius: 25px;
+  font-size: 14px;
+  text-align: center;
+  width: 20vh;
+  padding: 10px 20px;
+}
+
+.cancle {
+  padding-top: 20px;
+}
+
+.confrim-button {
+  text-align: center;
+  /* display: flex;
+  flex-direction: column; */
+  display: flex;
+  gap: 0.5rem;
+}
+
+.selector-btn-image {
+  width: 50%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .payment-confirmation {
+    width: 40vh;
+  }
+
+  .account-grid {
+    gap: 12px;
+  }
+
+  .payment-confirmation h1 {
+    font-size: 28px;
+  }
+
+  .payment-confirmation h2 {
+    font-size: 22px;
+  }
+
+  .main-amount {
+    font-size: 32px;
+  }
+}
