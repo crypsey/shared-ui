@@ -33,7 +33,7 @@ const CryptoPayment: React.FC<CryptoPaymentProps> = ({
   details = defaultPaymentDetails,
   onCopy,
   className = "",
-  initialTime = 60,
+  initialTime = 30 * 60,
   onTimeEnd = () => {},
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
@@ -74,9 +74,9 @@ const CryptoPayment: React.FC<CryptoPaymentProps> = ({
   }, [isRunning, timeLeft, onTimeEnd, initialTime]);
 
   const formatTime = (seconds: number): string => {
-    const mins: number = Math.floor(seconds / 60);
-    const secs: number = seconds % 60;
-    return `${secs.toString().padStart(2, "0")}`;
+    const minutes: number = Math.floor(seconds / 60);
+    const remainingSeconds: number = seconds % 60;
+    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
   return (
@@ -131,7 +131,7 @@ const CryptoPayment: React.FC<CryptoPaymentProps> = ({
         {/* Timer */}
         <div className="timer-container">
           <p className="timer-label">This order will be valid for:</p>
-          <div>00:{formatTime(timeLeft)}</div>
+          <div>{formatTime(timeLeft)}</div>
         </div>
 
         {/* Warning */}

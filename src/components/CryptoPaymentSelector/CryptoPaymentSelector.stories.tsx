@@ -61,7 +61,9 @@ const options: CryptoOption[] = [
 
 export const Default = () => (
   <CryptoPaymentSelector
-    onPaymentSelect={() => {}}
+    onPaymentSelect={(symbol, address) => {
+      console.log("Selected address:", symbol, address);
+    }}
     onSubmit={() => {}}
     options={options}
   />

@@ -53,7 +53,7 @@ export const Default: Story = {
       network: "Ethereum",
     },
     className: "",
-    initialTime: 60,
+    initialTime: 30 * 60,
   },
 };
 
@@ -68,7 +68,7 @@ export const BitcoinPayment: Story = {
       network: "Bitcoin",
     },
     className: "",
-    initialTime: 58,
+    initialTime: 30 * 60,
   },
 };
 
@@ -76,7 +76,7 @@ export const BitcoinPayment: Story = {
 export const ShortTimer: Story = {
   args: {
     ...Default.args,
-    initialTime: 10,
+    initialTime: 30 * 60,
   },
 };
 
@@ -110,6 +110,6 @@ export const NetworkWarning: Story = {
       network: "Tether (ERC-20)",
     },
     className: "warning-state",
-    initialTime: 60,
+    initialTime: 30 * 60,
   },
 };
