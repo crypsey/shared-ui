@@ -46,7 +46,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     details: {
-      amount: "0.5 ETH",
+      amount: "100",
       address: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
       amountInUSD: "$1,250.00 USD",
       expiresIn: "24:00:00",

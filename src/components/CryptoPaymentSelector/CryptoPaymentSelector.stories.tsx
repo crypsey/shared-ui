@@ -4,7 +4,7 @@ import CryptoPaymentSelector from "../CryptoPaymentSelector/CryptoPaymentSelecto
 import { CryptoOption } from "../CryptoPaymentSelector/CryptoPaymentSelector";
 
 export default {
-  title: "CryptoPaymentSelector",
+  title: "Components/CryptoPaymentSelector",
   component: CryptoPaymentSelector,
 };
 
