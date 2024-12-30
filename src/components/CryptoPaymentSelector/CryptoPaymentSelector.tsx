@@ -1,6 +1,7 @@
 import React, { useState, JSX } from "react";
 import "./CryptoPaymentSelector.css";
 import { Shield, Info } from "lucide-react";
+import { RingLoader } from "react-spinners";
 
 export interface CryptoOption {
   name: string;
@@ -78,8 +79,16 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
     }
   };
 
+  const loading = !options?.length;
+
   return (
     <div className="payment-crypto-container">
+      {loading && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <RingLoader color={"red"} size={80} loading={loading} />
+        </div>
+      )}
+
       <div style={{ padding: "1.4rem" }}>
         <div className="payment-crypto-grid">
           {options.map((option) => (
@@ -97,13 +106,8 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
           onClick={handleSubmit}
           disabled={!selectedSymbol}
         >
-          Continue with Payment
+          Continue with {selectedSymbol}
         </button>
-
-        <p className="security-note">
-          <Info className="w-4 h-4" />
-          Your funds are protected by our secure payment system
-        </p>
       </div>
     </div>
   );

@@ -1,125 +1,4 @@
-.crypto-container {
-  width: 100%;
-  max-width: 32rem;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.crypto-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1.5rem;
-}
-
-.crypto-options {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.crypto-option {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 2px solid #e5e7eb;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.crypto-option:hover {
-  border-color: #93c5fd;
-}
-
-.crypto-option.selected {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
-}
-
-.crypto-option-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.crypto-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.crypto-icon {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.crypto-icon-btc {
-  color: #f59e0b;
-}
-
-.crypto-icon-eth {
-  color: #7c3aed;
-}
-
-.crypto-icon-usdt {
-  color: #10b981;
-}
-
-.crypto-name {
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.crypto-symbol {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.crypto-price {
-  text-align: right;
-}
-
-.crypto-price-amount {
-  font-weight: 500;
-  color: #1f2937;
-}
-
-.crypto-price-label {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.continue-button {
-  width: 100%;
-  margin-top: 1.5rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border-color: transparent;
-}
-
-.continue-button:disabled {
-  background-color: #f3f4f6;
-  color: #9ca3af;
-  cursor: not-allowed;
-}
-
-.continue-button:not(:disabled) {
-  background-color: #2563eb;
-  color: white;
-}
-
-.continue-button:not(:disabled):hover {
-  background-color: #1d4ed8;
-}
-
 /* ========== */
-
 .payment-crypto-container {
   max-width: 48rem;
   margin: 0 auto;
@@ -211,15 +90,21 @@
 .submit-button {
   width: 100%;
   padding: 1rem;
-  background-color: #2563eb;
+  background-color: black;
   color: white;
   font-weight: 600;
-  border-radius: 0.75rem;
+  border-radius: 1.75rem;
   transition: background-color 0.2s ease;
 }
 
 .submit-button:hover {
-  background-color: #1d4ed8;
+  background-color: #e2673e;
+}
+
+.submit-button:disabled {
+  background-color: #f3f4f6;
+  color: black;
+  cursor: not-allowed;
 }
 
 .security-note {
