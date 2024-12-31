@@ -17,7 +17,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@assets/*": ["assets/*"]
+      "@assets/*": ["src/assets/*"]
     }
   },
   "include": ["src/**/*"],

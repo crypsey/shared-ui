@@ -6,7 +6,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "assets"
   ],
   "scripts": {
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
@@ -35,8 +36,10 @@
     "@babel/preset-typescript": "^7.26.0",
     "@chromatic-com/storybook": "^3.2.3",
     "@eslint/js": "^9.17.0",
+    "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
     "@rollup/plugin-url": "^8.0.2",

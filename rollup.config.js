@@ -21,6 +21,7 @@ const url = require("@rollup/plugin-url");
 const babel = require("@rollup/plugin-babel");
 const copy = require("rollup-plugin-copy");
 const { DEFAULT_EXTENSIONS } = require("@babel/core");
+const image = require("@rollup/plugin-image");
 
 module.exports = {
   input: "src/index.ts",
@@ -65,6 +66,7 @@ module.exports = {
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
       exclude: "node_modules/**",
     }),
+    image(),
     resolve({
       browser: true,
       extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -86,6 +88,10 @@ module.exports = {
         {
           src: "src/fonts/*",
           dest: "dist/fonts",
+        },
+        {
+          src: "src/assets/*",
+          dest: "dist/types/assets",
         },
       ],
       verbose: true,

@@ -1,9 +1,9 @@
 import React from "react";
 import "./ConfirmTransaction.css";
-// import image1 from "../../assets/etransfer1@2x.png";
-// import image2 from "../../assets/bank-deposit-icon1@2x.png";
-// import image3 from "../../assets/credit-card-color-icon1@2x.png";
-// import image4 from "../../assets/cuba.png";
+import image1 from "../../assets/etransfer1@2x.png";
+import image2 from "../../assets/bank-deposit-icon1@2x.png";
+import image3 from "../../assets/credit-card-color-icon1@2x.png";
+import image4 from "../../assets/cuba.png";
 
 enum SendingType {
   BANK = "bank",
@@ -17,10 +17,10 @@ interface TransactionIconProps {
 }
 
 const TransactionIcon: React.FC<TransactionIconProps> = ({ type }) => {
-  const image1 = require("../../assets/etransfer1@2x.png");
-  const image2 = require("../../assets/bank-deposit-icon1@2x.png");
-  const image3 = require("../../assets/credit-card-color-icon1@2x.png");
-  const image4 = require("../../assets/cuba.png");
+  // const image1 = require("../../assets/etransfer1@2x.png");
+  // const image2 = require("../../assets/bank-deposit-icon1@2x.png");
+  // const image3 = require("../../assets/credit-card-color-icon1@2x.png");
+  // const image4 = require("../../assets/cuba.png");
 
   switch (type.toUpperCase()) {
     case "ETRANSFER":
