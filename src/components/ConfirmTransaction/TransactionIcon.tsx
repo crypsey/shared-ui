@@ -17,11 +17,6 @@ interface TransactionIconProps {
 }
 
 const TransactionIcon: React.FC<TransactionIconProps> = ({ type }) => {
-  // const image1 = require("../../assets/etransfer1@2x.png");
-  // const image2 = require("../../assets/bank-deposit-icon1@2x.png");
-  // const image3 = require("../../assets/credit-card-color-icon1@2x.png");
-  // const image4 = require("../../assets/cuba.png");
-
   switch (type.toUpperCase()) {
     case "ETRANSFER":
       return (
