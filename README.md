@@ -1,6 +1,6 @@
 # Crypsey Shared UI Components
 
-A modern React component library providing reusable UI components for web applications.
+A modern React component library providing reusable UI components for web applications, with a focus on cryptocurrency payment and transaction management interfaces.
 
 ## Installation
 
@@ -11,40 +11,145 @@ npm install crypsey-shared-ui-lib
 ## Quick Start
 
 ```jsx
-import { Button } from "crypsey-shared-ui-lib";
+import { Header, CryptoPayment } from "crypsey-shared-ui-lib";
 
 function App() {
   return (
-    <Button variant="primary" onClick={() => console.log("clicked")}>
-      Click me
-    </Button>
+    <>
+      <Header title="My Crypto App" />
+      <CryptoPayment onPaymentComplete={(details) => console.log(details)} />
+    </>
   );
 }
 ```
 
 ## Available Components
 
-### Button
+### Header
 
-A flexible button component that supports different variants and states.
+A responsive header component for consistent navigation across your application.
 
 ```jsx
-import { Button } from 'crypsey-shared-ui-lib';
+import { Header } from "crypsey-shared-ui-lib";
 
-// Primary button
-<Button variant="primary">Primary Button</Button>
-
-// Secondary button
-<Button variant="secondary">Secondary Button</Button>
+<Header
+  title="Dashboard"
+  showNavigation={true}
+  userProfile={{
+    name: "John Doe",
+    avatar: "path/to/avatar.jpg",
+  }}
+/>;
 ```
 
-#### Props
+### CryptoPayment
 
-| Prop     | Type                     | Default   | Description                                  |
-| -------- | ------------------------ | --------- | -------------------------------------------- |
-| variant  | 'primary' \| 'secondary' | 'primary' | The visual style variant of the button       |
-| children | React.ReactNode          | -         | The content to be rendered inside the button |
-| onClick  | () => void               | -         | Function called when the button is clicked   |
+A comprehensive payment component that handles cryptocurrency transactions.
+
+```jsx
+import { CryptoPayment } from "crypsey-shared-ui-lib";
+
+<CryptoPayment
+  amount={100}
+  currency="USD"
+  onPaymentComplete={(transaction) => {
+    console.log("Payment completed:", transaction);
+  }}
+/>;
+```
+
+### EmptyState
+
+A component for displaying placeholder content when no data is available.
+
+```jsx
+import { EmptyState } from "crypsey-shared-ui-lib";
+
+<EmptyState
+  title="No Transactions"
+  description="You haven't made any transactions yet."
+  icon="wallet"
+/>;
+```
+
+### HeroContent
+
+A hero section component for featuring important content or calls-to-action.
+
+```jsx
+import { HeroContent } from "crypsey-shared-ui-lib";
+
+<HeroContent
+  title="Welcome to Crypto Payments"
+  subtitle="Fast, secure, and seamless cryptocurrency transactions"
+  ctaText="Get Started"
+  onCtaClick={() => {}}
+/>;
+```
+
+### RecentActivity
+
+Displays a list of recent cryptocurrency transactions or activities.
+
+```jsx
+import { RecentActivity } from "crypsey-shared-ui-lib";
+
+<RecentActivity
+  transactions={transactions}
+  onTransactionClick={(tx) => {
+    console.log("Transaction clicked:", tx);
+  }}
+/>;
+```
+
+### UserTransactions
+
+A detailed view of user transaction history with filtering and sorting capabilities.
+
+```jsx
+import { UserTransactions } from "crypsey-shared-ui-lib";
+
+<UserTransactions
+  userId="user123"
+  filters={{
+    dateRange: "last30Days",
+    status: "completed",
+  }}
+/>;
+```
+
+### CryptoPaymentSelector
+
+A component for selecting cryptocurrency payment methods and amounts.
+
+```jsx
+import { CryptoPaymentSelector } from "crypsey-shared-ui-lib";
+
+<CryptoPaymentSelector
+  availableCurrencies={["BTC", "ETH", "USDC"]}
+  onCurrencySelect={(currency) => {
+    console.log("Selected currency:", currency);
+  }}
+/>;
+```
+
+### ConfirmTransaction
+
+A modal component for confirming transaction details before proceeding.
+
+```jsx
+import { ConfirmTransaction } from "crypsey-shared-ui-lib";
+
+<ConfirmTransaction
+  transaction={{
+    amount: 1.5,
+    currency: "ETH",
+    recipient: "0x...",
+  }}
+  onConfirm={() => {}}
+  onCancel={() => {}}
+/>;
+```
 
 ## Development
 
