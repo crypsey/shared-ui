@@ -82,33 +82,33 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
 
   return (
     <div className="payment-crypto-container">
-      {loading && (
+      {loading ? (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <RingLoader color={"red"} size={80} loading={loading} />
         </div>
-      )}
+      ) : (
+        <div>
+          <div className="header-payment-title">Select a payment method</div>
+          <div className="payment-crypto-grid">
+            {options.map((option) => (
+              <PaymentOption
+                key={option.symbol}
+                {...option}
+                isSelected={selectedSymbol === option.symbol}
+                onSelect={handleSelect}
+              />
+            ))}
+          </div>
 
-      <div>
-        <div className="header-payment-title">Select a payment method</div>
-        <div className="payment-crypto-grid">
-          {options.map((option) => (
-            <PaymentOption
-              key={option.symbol}
-              {...option}
-              isSelected={selectedSymbol === option.symbol}
-              onSelect={handleSelect}
-            />
-          ))}
+          <button
+            className={`submit-button ${!selectedSymbol ? "disabled" : ""}`}
+            onClick={handleSubmit}
+            disabled={!selectedSymbol}
+          >
+            Continue with {selectedSymbol}
+          </button>
         </div>
-
-        <button
-          className={`submit-button ${!selectedSymbol ? "disabled" : ""}`}
-          onClick={handleSubmit}
-          disabled={!selectedSymbol}
-        >
-          Continue with {selectedSymbol}
-        </button>
-      </div>
+      )}
     </div>
   );
 };
