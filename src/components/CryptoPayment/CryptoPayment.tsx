@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
 import "./CryptoPayment.css";
 import { QRCodeSVG } from "qrcode.react";

@@ -12,7 +12,7 @@ import {
   VUGA_PAY_FEE,
   ConfirmProps,
 } from "../../Interface/Interface";
-import { formatCurrency } from "../../../Tools/Tools";
+import { formatCurrency } from "../../Tools/Tools";
 
 interface ConfirmTransactionProps {
   sendingMoneyData: ConfirmProps;

@@ -1,5 +1,9 @@
 import React from "react";
 import "./ConfirmTransaction.css";
+import image1 from "@assets/etransfer1@2x.png";
+import image2 from "@assets/bank-deposit-icon1@2x.png";
+import image3 from "@assets/credit-card-color-icon1@2x.png";
+import image4 from "@assets/cuba.png";
 
 enum SendingType {
   BANK = "bank",
@@ -13,11 +17,6 @@ interface TransactionIconProps {
 }
 
 const TransactionIcon: React.FC<TransactionIconProps> = ({ type }) => {
-  const image1 = require("../../asstes/etransfer1@2x.png");
-  const image2 = require("../../asstes/bank-deposit-icon1@2x.png");
-  const image3 = require("../../asstes/credit-card-color-icon1@2x.png");
-  const image4 = require("../../asstes/cuba.png");
-
   switch (type.toUpperCase()) {
     case "ETRANSFER":
       return (
