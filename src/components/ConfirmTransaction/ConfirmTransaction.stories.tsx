@@ -3,7 +3,7 @@ import ConfirmTransaction from "./ConfirmTransaction";
 import { action } from "@storybook/addon-actions";
 
 const meta: Meta<typeof ConfirmTransaction> = {
-  title: "Transactions/ConfirmTransaction",
+  title: "Components/ConfirmTransaction",
   component: ConfirmTransaction,
   parameters: {
     layout: "centered",
