@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 60vh;
   padding: 1rem;
   font-family:
     system-ui,

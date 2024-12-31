@@ -48,6 +48,7 @@ const ConfirmTransaction: React.FC<ConfirmTransactionProps> = ({
   const totalAmount = numAmount + creditCardFeeAmount;
   return (
     <div className="payment-confirmation">
+      <div style={{ fontSize: 30, paddingBottom: "1rem" }}>Confirm</div>
       <div className="bank-icon">
         <div className="icon-container">
           <TransactionIcon type={sendingMoneyData?.transactionType} />

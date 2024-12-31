@@ -1,11 +1,10 @@
 .payment-confirmation {
   margin: 0 auto;
-  background-color: white;
   font-family:
     system-ui,
     -apple-system,
     sans-serif;
-  width: 50vh;
+  width: 60vh;
   background-color: white;
   padding: 1.3rem;
   border-radius: 0.5rem;
