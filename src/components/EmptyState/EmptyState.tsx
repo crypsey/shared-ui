@@ -1,5 +1,3 @@
-// EmptyState.tsx
-import React from "react";
 import { LucideIcon } from "lucide-react";
 import "./EmptyState.css";
 

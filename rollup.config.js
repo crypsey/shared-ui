@@ -20,6 +20,7 @@ const css = require("rollup-plugin-css-only");
 const url = require("@rollup/plugin-url");
 const babel = require("@rollup/plugin-babel");
 const copy = require("rollup-plugin-copy");
+const { DEFAULT_EXTENSIONS } = require("@babel/core");
 
 module.exports = {
   input: "src/index.ts",
@@ -27,10 +28,12 @@ module.exports = {
     {
       file: "dist/index.js",
       format: "cjs",
+      sourcemap: true,
     },
     {
       file: "dist/index.esm.js",
       format: "esm",
+      sourcemap: true,
     },
   ],
   external: [
@@ -43,23 +46,31 @@ module.exports = {
     "dom-helpers",
     "classnames",
     "prop-types",
+    /^lucide-react/,
   ],
   plugins: [
+    typescript({
+      tsconfig: "./tsconfig.json",
+      declaration: true,
+      declarationDir: "dist/types",
+      exclude: ["**/__tests__", "**/*.test.tsx", "**/*.stories.tsx"],
+      noEmitOnError: true,
+    }),
     babel({
-      presets: ["@babel/preset-react"],
+      presets: ["@babel/preset-react", "@babel/preset-typescript"],
       plugins: [
         ["@babel/plugin-transform-react-jsx", { runtime: "automatic" }],
       ],
       babelHelpers: "bundled",
+      extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
+      exclude: "node_modules/**",
     }),
     resolve({
       browser: true,
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
     }),
     commonjs({
       include: /node_modules/,
-    }),
-    typescript({
-      tsconfig: "./tsconfig.json",
     }),
     url({
       include: ["**/*.ttf", "**/*.woff", "**/*.otf"],

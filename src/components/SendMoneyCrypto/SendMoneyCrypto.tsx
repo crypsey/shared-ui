@@ -73,19 +73,10 @@ const DEFAULT_RECEIVE_METHOD: ReceiveMethod = {
 
 const SendMoneyCrypto: React.FC<SendMoneyCryptoProps> = ({
   initialAmount = "100.00",
-  onAmountChange,
   onNextClick,
 }) => {
-  const [amount, setAmount] = useState<string>(initialAmount);
+  const [amount, _setAmount] = useState<string>(initialAmount);
   const [selectedMethod] = useState<ReceiveMethod>(DEFAULT_RECEIVE_METHOD);
-
-  const handleAmountChange = useCallback(
-    (newAmount: string) => {
-      setAmount(newAmount);
-      onAmountChange?.(newAmount);
-    },
-    [onAmountChange]
-  );
 
   const handleNextClick = useCallback(() => {
     onNextClick?.();

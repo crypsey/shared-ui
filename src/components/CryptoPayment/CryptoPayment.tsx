@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
 import "./CryptoPayment.css";
 import { QRCodeSVG } from "qrcode.react";
@@ -33,13 +33,12 @@ const defaultPaymentDetails: PaymentDetails = {
 const CryptoPayment: React.FC<CryptoPaymentProps> = ({
   details = defaultPaymentDetails,
   onCopy,
-  className = "",
   initialTime = 30 * 60,
   onTimeEnd = () => {},
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<number>(initialTime);
-  const [isRunning, setIsRunning] = useState<boolean>(true);
+  const [isRunning, _setIsRunning] = useState<boolean>(true);
 
   const handleCopy = useCallback(async () => {
     try {

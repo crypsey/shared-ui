@@ -1,6 +1,5 @@
-import React, { useState, JSX } from "react";
+import React, { useState } from "react";
 import "./CryptoPaymentSelector.css";
-import { Shield, Info } from "lucide-react";
 import { RingLoader } from "react-spinners";
 
 export interface CryptoOption {
