@@ -88,10 +88,8 @@ const CryptoPaymentSelector: React.FC<PaymentSelectorProps> = ({
         </div>
       )}
 
-      <div style={{ padding: "1.4rem" }}>
-        <div style={{ fontSize: 30, paddingBottom: "1rem" }}>
-          Select a payment method
-        </div>
+      <div>
+        <div className="header-payment-title">Select a payment method</div>
         <div className="payment-crypto-grid">
           {options.map((option) => (
             <PaymentOption

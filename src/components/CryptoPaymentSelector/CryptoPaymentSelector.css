@@ -123,6 +123,11 @@
   background-color: #eff6ff;
 }
 
+.header-payment-title {
+  font-size: "30";
+  padding-bottom: "1rem";
+}
+
 /* Small devices (phones, 320px and up) */
 @media (min-width: 320px) {
   .payment-crypto-grid {
