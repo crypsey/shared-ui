@@ -70,6 +70,7 @@ export const CreditCardTransaction: Story = {
   args: {
     ...defaultProps,
     sendingMoneyData: creditCardData,
+    crypsey: false,
   },
 };
 
@@ -78,6 +79,7 @@ export const WithInteractions: Story = {
   args: {
     ...defaultProps,
     sendingMoneyData: creditCardData,
+    crypsey: true,
   },
   play: async ({ canvasElement }) => {},
 };
