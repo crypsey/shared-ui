@@ -30,10 +30,9 @@ type Story = StoryObj<typeof TransactionModal>;
 
 // Sample transaction data
 const sampleTransaction: TransactionDetails = {
-  recipient: "alex.eth",
-  amountCAD: 1500.5,
-  amountCrypto: 0.45632,
-  cryptoSymbol: "ETH",
+  amount: 1001,
+  value: 0.0045,
+  network: "Ethereum",
   status: "completed",
   timestamp: "2024-01-05 14:30:25",
 };
@@ -54,11 +53,14 @@ export const PendingTransaction: Story = {
     transaction: {
       ...sampleTransaction,
       status: "pending",
-      recipient: "bob.eth",
-      amountCAD: 2750.75,
-      amountCrypto: 0.82145,
+      amount: 1001,
+      value: 0.0045,
+      network: "Ethereum",
       timestamp: "2024-01-05 15:45:30",
       currency: "CAD",
+      paymentDetails: {
+        email: "pmuhire2@mail.com",
+      },
     },
   },
 };
@@ -70,9 +72,12 @@ export const WithoutTimestamp: Story = {
     transaction: {
       ...sampleTransaction,
       timestamp: undefined,
-      recipient: "carol.eth",
-      amountCAD: 500.25,
-      amountCrypto: 0.15428,
+      amount: 1001,
+      value: 0.0045,
+      network: "Ethereum",
+      paymentDetails: {
+        accountNumber: "pmuhire2@mail.com",
+      },
     },
   },
 };
@@ -83,11 +88,13 @@ export const BitcoinTransaction: Story = {
     onClose: () => {},
     transaction: {
       ...sampleTransaction,
-      cryptoSymbol: "BTC",
-      recipient: "dave.btc",
-      amountCAD: 3500.0,
-      amountCrypto: 0.08254,
+      amount: 1001,
+      value: 0.0045,
+      network: "Ethereum",
       timestamp: "2024-01-05 16:20:15",
+      paymentDetails: {
+        cardNumber: "pmuhire2@mail.com",
+      },
     },
   },
 };
