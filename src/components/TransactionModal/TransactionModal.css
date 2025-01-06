@@ -75,6 +75,7 @@
   font-weight: 500;
   cursor: pointer;
   text-transform: none;
+  border-radius: 3rem;
 }
 
 .button-primary:hover {
@@ -91,6 +92,7 @@
   font-weight: 500;
   cursor: pointer;
   text-transform: none;
+  border-radius: 3rem;
 }
 
 .button-secondary:hover {
