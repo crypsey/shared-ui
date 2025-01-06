@@ -1,0 +1,98 @@
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 480px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.modal-close-button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.modal-title {
+  margin-bottom: 32px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.details-label {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.details-value {
+  font-size: 20px;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-pending {
+  color: #f97316;
+}
+
+.button-section {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.button-primary {
+  padding: 16px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.button-primary:hover {
+  background-color: #4338ca;
+}
+
+.button-secondary {
+  padding: 16px;
+  background-color: #f3f4f6;
+  color: #111827;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.button-secondary:hover {
+  background-color: #e5e7eb;
+}

@@ -151,6 +151,42 @@ import { ConfirmTransaction } from "crypsey-shared-ui-lib";
 />;
 ```
 
+### TransactionModal Component
+
+A React modal component for displaying cryptocurrency transaction details, built with Material-UI and Lucide React icons.
+
+```jsx
+import React, { useState } from "react";
+import { TransactionModal } from "./components/TransactionModal";
+
+const MyComponent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const transactionDetails = {
+    recipient: "john.doe@example.com",
+    amountCAD: 100.5,
+    amountCrypto: 0.0034,
+    cryptoSymbol: "BTC",
+    status: "pending",
+    currency: "CAD",
+  };
+
+  const handleContinue = () => {
+    // Handle continue to payment logic
+    console.log("Continuing to payment...");
+  };
+
+  return (
+    <TransactionModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      transaction={transactionDetails}
+      onContinue={handleContinue}
+    />
+  );
+};
+```
+
 ## Development
 
 ### Setup

@@ -6,3 +6,4 @@ export { default as RecentActivity } from "./RecentActivity/RecentActivity";
 export { default as UserTransactions } from "./UserTransactions/UserTransactions";
 export { default as CryptoPaymentSelector } from "./CryptoPaymentSelector/CryptoPaymentSelector";
 export { default as ConfirmTransaction } from "./ConfirmTransaction/ConfirmTransaction";
+export { default as TransactionModal } from "./TransactionModal/TransactionModal";
