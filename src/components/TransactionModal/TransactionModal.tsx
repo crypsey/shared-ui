@@ -7,7 +7,7 @@ export interface TransactionDetails {
   amount: number | string;
   value: number | string;
   network: string;
-  status: "pending" | "completed";
+  status: string;
   timestamp?: string;
   currency?: string;
   paymentDetails?: {
@@ -110,7 +110,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
           <div className="details-row">
             <div className="details-label">Status</div>
             <div
-              className={`status-container ${transaction.status === "pending" ? "status-pending" : ""}`}
+              className={`status-container ${transaction.status.toLocaleLowerCase() === "pending" ? "status-pending" : ""}`}
             >
               <Clock size={20} />
               <span>
@@ -122,13 +122,15 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
         </div>
 
         <div className="button-section">
-          {transaction.status === "pending" && (
+          {transaction.status.toLocaleLowerCase() === "pending" && (
             <button className="button-primary" onClick={onContinue}>
               Continue to Payment
             </button>
           )}
           <button className="button-secondary" onClick={onClose}>
-            {transaction.status === "completed" ? "Close" : "Cancel"}
+            {transaction.status.toLocaleLowerCase() === "completed"
+              ? "Close"
+              : "Cancel"}
           </button>
         </div>
       </div>

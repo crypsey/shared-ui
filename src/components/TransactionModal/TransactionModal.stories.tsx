@@ -33,7 +33,7 @@ const sampleTransaction: TransactionDetails = {
   amount: 1001,
   value: 0.0045,
   network: "Ethereum",
-  status: "completed",
+  status: "PENDING",
   timestamp: "2024-01-05 14:30:25",
 };
 
@@ -52,7 +52,7 @@ export const PendingTransaction: Story = {
     onClose: () => {},
     transaction: {
       ...sampleTransaction,
-      status: "pending",
+      status: "PENDING",
       amount: 1001,
       value: 0.0045,
       network: "Ethereum",
@@ -71,6 +71,7 @@ export const WithoutTimestamp: Story = {
     onClose: () => {},
     transaction: {
       ...sampleTransaction,
+      status: "COMPLETED",
       timestamp: undefined,
       amount: 1001,
       value: 0.0045,
