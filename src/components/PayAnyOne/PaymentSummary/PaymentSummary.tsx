@@ -1,4 +1,3 @@
-// PaymentSummary.tsx
 import React from "react";
 import "./PaymentSummary.css";
 
