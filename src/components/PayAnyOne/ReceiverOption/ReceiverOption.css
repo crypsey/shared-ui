@@ -9,7 +9,6 @@
 }
 
 .selector-trigger {
-  width: 100%;
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
@@ -99,7 +98,7 @@
   font-size: 0.875rem;
 }
 
-.icon-container {
+.recv-container {
   display: flex;
   align-items: center;
   justify-content: center;

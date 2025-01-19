@@ -73,12 +73,12 @@ const accounts: Account[] = [
   },
 ];
 
-interface BankAccountSelectorProps {
+interface ReceiverOptionProps {
   onAccountChange?: (account: Account | null) => void;
   defaultAccount?: string;
 }
 
-const BankAccountSelector: React.FC<BankAccountSelectorProps> = ({
+const ReceiverOption: React.FC<ReceiverOptionProps> = ({
   onAccountChange,
   defaultAccount,
 }) => {
@@ -112,7 +112,7 @@ const BankAccountSelector: React.FC<BankAccountSelectorProps> = ({
 
     const IconComponent = accountType.icon;
     return (
-      <div className={`icon-container ${accountType.color}`}>
+      <div className={`recv-container ${accountType.color}`}>
         <IconComponent className="icon" />
       </div>
     );
@@ -133,13 +133,12 @@ const BankAccountSelector: React.FC<BankAccountSelectorProps> = ({
               {getAccountIcon(selectedAccount.type)}
               <div className="account-info">
                 <span className="account-name">{selectedAccount.name}</span>
-                <span className="account-number">{selectedAccount.number}</span>
               </div>
             </>
           ) : (
             <>
               {getAccountIcon("checking")}
-              <span className="account-name">Select Bank Account</span>
+              <span className="account-name">Select reciving method</span>
             </>
           )}
         </div>
@@ -165,4 +164,4 @@ const BankAccountSelector: React.FC<BankAccountSelectorProps> = ({
   );
 };
 
-export default BankAccountSelector;
+export default ReceiverOption;
