@@ -64,3 +64,5 @@ export const ItemMenu: React.FC<ItemMenuProps> = ({
     </>
   );
 };
+
+export default ItemMenu;
