@@ -5,6 +5,9 @@ interface Token {
   symbol: string;
   name: string;
   icon: string;
+  coin?: string;
+  logo?: string;
+  ticker?: string;
 }
 
 interface ItemMenuProps {
@@ -45,17 +48,23 @@ export const ItemMenu: React.FC<ItemMenuProps> = ({
         <div className="token-list">
           {items.map((token) => (
             <button
-              key={token.symbol}
+              key={token.symbol || token.ticker}
               className="token-option"
               onClick={() => {
                 onSelect(token);
                 onClose();
               }}
             >
-              <img src={token.icon} alt={token.name} className="token-icon" />
+              <img
+                src={token.icon || token.logo}
+                alt={token.name || token.coin}
+                className="token-icon"
+              />
               <div className="token-info">
-                <span className="token-symbol">{token.name}</span>
-                <span className="token-name">{token.symbol}</span>
+                <span className="token-symbol">{token.name || token.coin}</span>
+                <span className="token-name">
+                  {token.symbol || token.ticker}
+                </span>
               </div>
             </button>
           ))}

@@ -12,6 +12,9 @@ interface Token {
   symbol: string;
   name: string;
   icon: string;
+  coin?: string;
+  logo?: string;
+  ticker?: string;
 }
 
 interface AssetSelectorProps {
@@ -105,8 +108,8 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
             }}
           >
             <img
-              src={selectedItem.icon}
-              alt={`${selectedItem.name} logo`}
+              src={selectedItem.icon || selectedItem.logo}
+              alt={`${selectedItem.name || selectedItem.symbol} logo`}
               className="youpay-icon"
             />
             <span className="youpay-symbol">{selectedItem.symbol}</span>
