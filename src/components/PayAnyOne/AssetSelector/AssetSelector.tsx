@@ -113,8 +113,8 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
               className="youpay-icon"
             />
             <span className="youpay-symbol">
-              {selectedItem.symbol?.toLocaleUpperCase() ||
-                selectedItem.ticker?.toLocaleUpperCase()}
+              {selectedItem?.symbol?.toLocaleUpperCase() ||
+                selectedItem?.ticker?.toLocaleUpperCase()}
             </span>
           </div>
         </div>
