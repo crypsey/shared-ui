@@ -83,7 +83,7 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
   return (
     <div className="youpay-container">
       <div className={`outer-card ${error ? "error" : ""}`}>
-        <p className="send-text">{headerTitle}</p>
+        <div className="send-text">{headerTitle}</div>
         <div className="inner-card">
           <input
             type="text"
