@@ -109,10 +109,12 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
           >
             <img
               src={selectedItem.icon || selectedItem.logo}
-              alt={`${selectedItem.name || selectedItem.symbol} logo`}
+              alt={`${selectedItem.name || selectedItem.coin} logo`}
               className="youpay-icon"
             />
-            <span className="youpay-symbol">{selectedItem.symbol}</span>
+            <span className="youpay-symbol">
+              {selectedItem.symbol || selectedItem.ticker}
+            </span>
           </div>
         </div>
       </div>
