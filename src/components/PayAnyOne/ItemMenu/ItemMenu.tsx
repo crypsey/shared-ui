@@ -63,7 +63,8 @@ export const ItemMenu: React.FC<ItemMenuProps> = ({
               <div className="token-info">
                 <span className="token-symbol">{token.name || token.coin}</span>
                 <span className="token-name">
-                  {token.symbol || token.ticker}
+                  {token.symbol.toLocaleUpperCase() ||
+                    token.ticker?.toLocaleUpperCase()}
                 </span>
               </div>
             </button>
