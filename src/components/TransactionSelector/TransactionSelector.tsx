@@ -122,7 +122,7 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
 
   return (
     <div className={`transaction-container ${className}`.trim()}>
-      <div className="header">
+      <div className="transaction-selector-header">
         <h1>Create Transaction</h1>
         <p>Select your country and preferred stablecoin</p>
       </div>
