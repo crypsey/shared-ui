@@ -74,6 +74,7 @@ const accounts: Account[] = [
 ];
 
 interface ReceiverOptionProps {
+  accounts: Account[];
   onAccountChange?: (account: Account | null) => void;
   defaultAccount?: string;
 }
