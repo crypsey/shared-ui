@@ -3,7 +3,7 @@ import { TransactionSelector } from "./TransactionSelector";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
-  title: "Forms/TransactionSelector",
+  title: "Components/TransactionSelector",
   component: TransactionSelector,
   parameters: {
     layout: "centered",
@@ -70,12 +70,42 @@ export const WithPreselectedValues: Story = {
   },
 };
 
+const DEFAULT_COUNTRIES = [
+  {
+    name: "United States",
+    icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  },
+  {
+    name: "United Kingdom",
+    icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  },
+  {
+    name: "Canada",
+    icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  },
+];
+
+const DEFAULT_STABLECOINS = [
+  {
+    name: "USDT (Tether)",
+    icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+  },
+  {
+    name: "USDC (USD Coin)",
+    icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+  },
+  {
+    name: "BUSD (Binance USD)",
+    icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+  },
+];
+
 // Limited options
 export const LimitedOptions: Story = {
   args: {
     onComplete: action("onComplete"),
-    availableCountries: ["United States", "Canada", "United Kingdom"],
-    availableStablecoins: ["USDT (Tether)", "USDC (USD Coin)", "DAI"],
+    availableCountries: DEFAULT_COUNTRIES,
+    availableStablecoins: DEFAULT_STABLECOINS,
   },
   parameters: {
     docs: {

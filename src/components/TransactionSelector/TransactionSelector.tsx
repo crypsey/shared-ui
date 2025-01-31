@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Search, CheckCircle, AlertCircle } from "lucide-react";
+import { Search, AlertCircle } from "lucide-react";
 
 import "./TransactionSelector.css";
 
@@ -11,52 +11,65 @@ interface TransactionSelectorProps {
   onComplete?: (selection: TransactionSelection) => void;
   initialCountry?: string;
   initialStablecoin?: string;
-  availableCountries?: string[];
-  availableStablecoins?: string[];
+  availableCountries?: { name: string; icon: string }[];
+  availableStablecoins?: { name: string; icon: string }[];
   className?: string;
 }
 
 type SelectionType = "country" | "stablecoin";
 
-interface SelectionStatus {
-  isSelected: boolean;
-  value: string | null;
+interface Country {
+  name: string;
+  icon: string;
 }
 
-const DEFAULT_COUNTRIES = [
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-  "Germany",
-  "France",
-  "Japan",
-  "Singapore",
-  "Switzerland",
-  "Netherlands",
+interface Stablecoin {
+  name: string;
+  icon: string;
+}
+
+const DEFAULT_COUNTRIES: Country[] = [
+  {
+    name: "United States",
+    icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  },
+  {
+    name: "United Kingdom",
+    icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  },
+  {
+    name: "Canada",
+    icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  },
 ];
 
-const DEFAULT_STABLECOINS = [
-  "USDT (Tether)",
-  "USDC (USD Coin)",
-  "BUSD (Binance USD)",
-  "DAI",
-  "TUSD (TrueUSD)",
-  "USDP (Pax Dollar)",
-  "GUSD (Gemini Dollar)",
-  "FRAX",
-  "LUSD (Liquity USD)",
-  "sUSD (Synthetix USD)",
+const DEFAULT_STABLECOINS: Stablecoin[] = [
+  {
+    name: "USDT (Tether)",
+    icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+  },
+  {
+    name: "USDC (USD Coin)",
+    icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+  },
+  {
+    name: "BUSD (Binance USD)",
+    icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+  },
 ];
 
 export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
   onComplete,
   initialCountry = "",
   initialStablecoin = "",
-  availableCountries = DEFAULT_COUNTRIES,
-  availableStablecoins = DEFAULT_STABLECOINS,
+  availableCountries,
+  availableStablecoins,
   className = "",
 }) => {
+  // Use default values if props are not provided
+  const countries = availableCountries || DEFAULT_COUNTRIES;
+  const stablecoins = availableStablecoins || DEFAULT_STABLECOINS;
+
   // State management
   const [countrySearch, setCountrySearch] = useState<string>("");
   const [stablecoinSearch, setStablecoinSearch] = useState<string>("");
@@ -66,15 +79,14 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
   const [selectedStablecoin, setSelectedStablecoin] = useState<string | null>(
     initialStablecoin || null
   );
-  const [activeField, setActiveField] = useState<SelectionType>("country");
+  // const [activeField, setActiveField] = useState<SelectionType>("country");
 
-  // Filtered results based on search
-  const filteredCountries = availableCountries.filter((country) =>
-    country.toLowerCase().includes(countrySearch.toLowerCase())
+  const filteredCountries = countries.filter((country) =>
+    country.name.toLowerCase().includes(countrySearch.toLowerCase())
   );
 
-  const filteredStablecoins = availableStablecoins.filter((coin) =>
-    coin.toLowerCase().includes(stablecoinSearch.toLowerCase())
+  const filteredStablecoins = stablecoins.filter((coin) =>
+    coin.name.toLowerCase().includes(stablecoinSearch.toLowerCase())
   );
 
   // Handlers
@@ -83,7 +95,6 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
       if (type === "country") {
         setSelectedCountry(value);
         setCountrySearch("");
-        setActiveField("stablecoin");
       } else {
         setSelectedStablecoin(value);
         setStablecoinSearch("");
@@ -114,9 +125,9 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
     []
   );
 
-  const handleSearchFocus = useCallback((type: SelectionType): void => {
-    setActiveField(type);
-  }, []);
+  // const handleSearchFocus = useCallback((type: SelectionType): void => {
+  //   setActiveField(type);
+  // }, []);
 
   const isReadyForTransaction = selectedCountry && selectedStablecoin;
 
@@ -124,59 +135,77 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
     <div className={`transaction-container ${className}`.trim()}>
       <div className="transaction-selector-header">
         <h1>Create Transaction</h1>
-        <p>Select your country and preferred stablecoin</p>
+        <p>Select country and preferred stablecoin</p>
       </div>
 
       <div className="selection-summary">
-        <div className="summary-card">
-          <div className="label">Country</div>
-          <div
-            className={`selection-status ${selectedCountry ? "status-selected" : "status-pending"}`}
-          >
-            {selectedCountry ? (
-              <>
-                <CheckCircle size={20} />
-                {selectedCountry}
-              </>
-            ) : (
-              <>
-                <AlertCircle size={20} />
-                Not selected
-              </>
-            )}
+        <div>
+          <div className="label-name">Country</div>
+          <div className="summary-card">
+            <div
+              className={`selection-status ${selectedCountry ? "status-selected" : "status-pending"}`}
+            >
+              {selectedCountry ? (
+                <>
+                  <img
+                    src={
+                      countries.find(
+                        (country) => country.name === selectedCountry
+                      )?.icon
+                    }
+                    alt={selectedCountry}
+                    className="country-flag"
+                  />
+                  {selectedCountry}
+                </>
+              ) : (
+                <>
+                  <AlertCircle size={20} />
+                  Not selected
+                </>
+              )}
+            </div>
           </div>
         </div>
-        <div className="summary-card">
-          <div className="label">Stablecoin</div>
-          <div
-            className={`selection-status ${selectedStablecoin ? "status-selected" : "status-pending"}`}
-          >
-            {selectedStablecoin ? (
-              <>
-                <CheckCircle size={20} />
-                {selectedStablecoin}
-              </>
-            ) : (
-              <>
-                <AlertCircle size={20} />
-                Not selected
-              </>
-            )}
+
+        <div>
+          <div className="label-name">Stablecoin</div>
+          <div className="summary-card">
+            <div
+              className={`selection-status ${selectedStablecoin ? "status-selected" : "status-pending"}`}
+            >
+              {selectedStablecoin ? (
+                <>
+                  <img
+                    src={
+                      stablecoins.find(
+                        (coin) => coin.name === selectedStablecoin
+                      )?.icon
+                    }
+                    alt={selectedStablecoin}
+                    className="country-flag"
+                  />
+                  {selectedStablecoin}
+                </>
+              ) : (
+                <>
+                  <AlertCircle size={20} />
+                  Not selected
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="search-section">
-        {/* Country Search */}
-        <div
-          className={`search-container ${activeField !== "country" ? "inactive" : ""}`}
-        >
+        <div className={`search-container`}>
           <input
             type="text"
             value={countrySearch}
             onChange={(e) => handleSearchChange("country", e)}
-            onFocus={() => handleSearchFocus("country")}
-            placeholder="Search for your country..."
+            // onFocus={() => handleSearchFocus("country")}
+            placeholder="Search for country..."
             className="search-input"
           />
           <Search className="search-icon" size={20} />
@@ -186,9 +215,14 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
                 <div
                   key={`country-${index}`}
                   className="result-item"
-                  onClick={() => handleSelection("country", country)}
+                  onClick={() => handleSelection("country", country.name)}
                 >
-                  {country}
+                  <img
+                    src={country.icon}
+                    alt={country.name}
+                    className="country-flag"
+                  />
+                  <div className="item-name">{country.name}</div>
                 </div>
               ))}
               {filteredCountries.length === 0 && (
@@ -197,19 +231,16 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
             </div>
           )}
         </div>
-
-        {/* Stablecoin Search */}
-        <div
-          className={`search-container ${activeField !== "stablecoin" ? "inactive" : ""}`}
-        >
+        <div className={`search-container`}>
           <input
             type="text"
             value={stablecoinSearch}
             onChange={(e) => handleSearchChange("stablecoin", e)}
-            onFocus={() => handleSearchFocus("stablecoin")}
-            placeholder="Search for a stablecoin..."
+            // onFocus={() => handleSearchFocus("stablecoin")}
+            placeholder="Search for  a stablecoin..."
             className="search-input"
           />
+
           <Search className="search-icon" size={20} />
           {stablecoinSearch && (
             <div className="results-dropdown">
@@ -217,9 +248,14 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
                 <div
                   key={`stablecoin-${index}`}
                   className="result-item"
-                  onClick={() => handleSelection("stablecoin", coin)}
+                  onClick={() => handleSelection("stablecoin", coin.name)}
                 >
-                  {coin}
+                  <img
+                    src={coin.icon}
+                    alt={coin.name}
+                    className="country-flag"
+                  />
+                  <div className="item-name">{coin.name}</div>
                 </div>
               ))}
               {filteredStablecoins.length === 0 && (
