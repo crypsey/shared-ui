@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Search, AlertCircle } from "lucide-react";
+import { RingLoader } from "react-spinners";
 
 import "./TransactionSelector.css";
 
@@ -125,155 +126,161 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
     []
   );
 
-  // const handleSearchFocus = useCallback((type: SelectionType): void => {
-  //   setActiveField(type);
-  // }, []);
-
   const isReadyForTransaction = selectedCountry && selectedStablecoin;
 
+  const loading = !countries?.length || !stablecoins?.length;
+
   return (
-    <div className={`transaction-container ${className}`.trim()}>
-      <div className="transaction-selector-header">
-        <h1>Create Transaction</h1>
-        <p>Select country and preferred stablecoin</p>
-      </div>
+    <>
+      {loading ? (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <RingLoader color={"red"} size={80} loading={loading} />
+        </div>
+      ) : (
+        <div className={`transaction-container ${className}`.trim()}>
+          <div className="transaction-selector-header">
+            <h1>Create Transaction</h1>
+            <p>Select country and preferred stablecoin</p>
+          </div>
 
-      <div className="selection-summary">
-        <div>
-          <div className="label-name">Country</div>
-          <div className="summary-card">
-            <div
-              className={`selection-status ${selectedCountry ? "status-selected" : "status-pending"}`}
-            >
-              {selectedCountry ? (
-                <>
-                  <img
-                    src={
-                      countries.find(
-                        (country) => country.name === selectedCountry
-                      )?.icon
-                    }
-                    alt={selectedCountry}
-                    className="country-flag"
-                  />
-                  {selectedCountry}
-                </>
-              ) : (
-                <>
-                  <AlertCircle size={20} />
-                  Not selected
-                </>
+          <div className="selection-summary">
+            <div>
+              <div className="label-name">Country</div>
+              <div className="summary-card">
+                <div
+                  className={`selection-status ${selectedCountry ? "status-selected" : "status-pending"}`}
+                >
+                  {selectedCountry ? (
+                    <>
+                      <img
+                        src={
+                          countries.find(
+                            (country) => country.name === selectedCountry
+                          )?.icon
+                        }
+                        alt={selectedCountry}
+                        className="country-flag"
+                      />
+                      {selectedCountry}
+                    </>
+                  ) : (
+                    <>
+                      <AlertCircle size={20} />
+                      Not selected
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="label-name">Stablecoin</div>
+              <div className="summary-card">
+                <div
+                  className={`selection-status ${selectedStablecoin ? "status-selected" : "status-pending"}`}
+                >
+                  {selectedStablecoin ? (
+                    <>
+                      <img
+                        src={
+                          stablecoins.find(
+                            (coin) => coin.name === selectedStablecoin
+                          )?.icon
+                        }
+                        alt={selectedStablecoin}
+                        className="country-flag"
+                      />
+                      {selectedStablecoin}
+                    </>
+                  ) : (
+                    <>
+                      <AlertCircle size={20} />
+                      Not selected
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="search-section">
+            <div className={`search-container`}>
+              <input
+                type="text"
+                value={countrySearch}
+                onChange={(e) => handleSearchChange("country", e)}
+                // onFocus={() => handleSearchFocus("country")}
+                placeholder="Search for country..."
+                className="search-input"
+              />
+              <Search className="search-icon" size={20} />
+              {countrySearch && (
+                <div className="results-dropdown">
+                  {filteredCountries.map((country, index) => (
+                    <div
+                      key={`country-${index}`}
+                      className="result-item"
+                      onClick={() => handleSelection("country", country.name)}
+                    >
+                      <img
+                        src={country.icon}
+                        alt={country.name}
+                        className="country-flag"
+                      />
+                      <div className="item-name">{country.name}</div>
+                    </div>
+                  ))}
+                  {filteredCountries.length === 0 && (
+                    <div className="no-results">No countries found</div>
+                  )}
+                </div>
+              )}
+            </div>
+            <div className={`search-container`}>
+              <input
+                type="text"
+                value={stablecoinSearch}
+                onChange={(e) => handleSearchChange("stablecoin", e)}
+                // onFocus={() => handleSearchFocus("stablecoin")}
+                placeholder="Search for  a stablecoin..."
+                className="search-input"
+              />
+
+              <Search className="search-icon" size={20} />
+              {stablecoinSearch && (
+                <div className="results-dropdown">
+                  {filteredStablecoins.map((coin, index) => (
+                    <div
+                      key={`stablecoin-${index}`}
+                      className="result-item"
+                      onClick={() => handleSelection("stablecoin", coin.name)}
+                    >
+                      <img
+                        src={coin.icon}
+                        alt={coin.name}
+                        className="country-flag"
+                      />
+                      <div className="item-name">{coin.name}</div>
+                    </div>
+                  ))}
+                  {filteredStablecoins.length === 0 && (
+                    <div className="no-results">No stablecoins found</div>
+                  )}
+                </div>
               )}
             </div>
           </div>
-        </div>
 
-        <div>
-          <div className="label-name">Stablecoin</div>
-          <div className="summary-card">
-            <div
-              className={`selection-status ${selectedStablecoin ? "status-selected" : "status-pending"}`}
-            >
-              {selectedStablecoin ? (
-                <>
-                  <img
-                    src={
-                      stablecoins.find(
-                        (coin) => coin.name === selectedStablecoin
-                      )?.icon
-                    }
-                    alt={selectedStablecoin}
-                    className="country-flag"
-                  />
-                  {selectedStablecoin}
-                </>
-              ) : (
-                <>
-                  <AlertCircle size={20} />
-                  Not selected
-                </>
-              )}
-            </div>
-          </div>
+          <button
+            className="continue-button"
+            onClick={handleContinue}
+            disabled={!isReadyForTransaction}
+          >
+            Continue with Transaction
+          </button>
         </div>
-      </div>
-
-      <div className="search-section">
-        <div className={`search-container`}>
-          <input
-            type="text"
-            value={countrySearch}
-            onChange={(e) => handleSearchChange("country", e)}
-            // onFocus={() => handleSearchFocus("country")}
-            placeholder="Search for country..."
-            className="search-input"
-          />
-          <Search className="search-icon" size={20} />
-          {countrySearch && (
-            <div className="results-dropdown">
-              {filteredCountries.map((country, index) => (
-                <div
-                  key={`country-${index}`}
-                  className="result-item"
-                  onClick={() => handleSelection("country", country.name)}
-                >
-                  <img
-                    src={country.icon}
-                    alt={country.name}
-                    className="country-flag"
-                  />
-                  <div className="item-name">{country.name}</div>
-                </div>
-              ))}
-              {filteredCountries.length === 0 && (
-                <div className="no-results">No countries found</div>
-              )}
-            </div>
-          )}
-        </div>
-        <div className={`search-container`}>
-          <input
-            type="text"
-            value={stablecoinSearch}
-            onChange={(e) => handleSearchChange("stablecoin", e)}
-            // onFocus={() => handleSearchFocus("stablecoin")}
-            placeholder="Search for  a stablecoin..."
-            className="search-input"
-          />
-
-          <Search className="search-icon" size={20} />
-          {stablecoinSearch && (
-            <div className="results-dropdown">
-              {filteredStablecoins.map((coin, index) => (
-                <div
-                  key={`stablecoin-${index}`}
-                  className="result-item"
-                  onClick={() => handleSelection("stablecoin", coin.name)}
-                >
-                  <img
-                    src={coin.icon}
-                    alt={coin.name}
-                    className="country-flag"
-                  />
-                  <div className="item-name">{coin.name}</div>
-                </div>
-              ))}
-              {filteredStablecoins.length === 0 && (
-                <div className="no-results">No stablecoins found</div>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <button
-        className="continue-button"
-        onClick={handleContinue}
-        disabled={!isReadyForTransaction}
-      >
-        Continue with Transaction
-      </button>
-    </div>
+      )}
+    </>
   );
 };
 
