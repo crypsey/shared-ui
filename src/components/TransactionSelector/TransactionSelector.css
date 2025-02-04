@@ -34,7 +34,7 @@
 }
 
 .selection-summary {
-  display: flex;
+  /* display: flex; */
   gap: 16px;
   margin-bottom: 24px;
 }
@@ -68,7 +68,7 @@
 }
 
 .search-section {
-  margin-bottom: 0.7rem;
+  /* margin-bottom: 0.7rem; */
 }
 
 .search-container {

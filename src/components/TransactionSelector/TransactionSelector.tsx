@@ -5,15 +5,15 @@ import { RingLoader } from "react-spinners";
 import "./TransactionSelector.css";
 
 interface TransactionSelection {
-  country: string;
-  stablecoin: string;
+  country: Country;
+  stablecoin: Stablecoin;
 }
 interface TransactionSelectorProps {
   onComplete?: (selection: TransactionSelection) => void;
-  initialCountry?: string;
-  initialStablecoin?: string;
-  availableCountries?: { name: string; icon: string }[];
-  availableStablecoins?: { name: string; icon: string }[];
+  initialCountry?: Country;
+  initialStablecoin?: Stablecoin;
+  availableCountries?: Country[];
+  availableStablecoins?: Stablecoin[];
   className?: string;
 }
 
@@ -27,6 +27,15 @@ interface Country {
 interface Stablecoin {
   name: string;
   icon: string;
+  coin: string;
+  logo: string;
+  ticker: string;
+  minimum_transaction: number;
+  minimum_transaction_coin: string;
+  minimum_fee: number;
+  minimum_fee_coin: string;
+  fee_percent: string;
+  network_fee_estimation: string;
 }
 
 const DEFAULT_COUNTRIES: Country[] = [
@@ -48,21 +57,48 @@ const DEFAULT_STABLECOINS: Stablecoin[] = [
   {
     name: "USDT (Tether)",
     icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+    coin: "USDT",
+    logo: "https://api.cryptapi.io/media/token_logos/usdt.png",
+    ticker: "usdt",
+    minimum_transaction: 5000,
+    minimum_transaction_coin: "usdt",
+    minimum_fee: 500,
+    minimum_fee_coin: "usdt",
+    fee_percent: "0.5",
+    network_fee_estimation: "0.00042",
   },
   {
     name: "USDC (USD Coin)",
     icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+    coin: "USDT",
+    logo: "https://api.cryptapi.io/media/token_logos/usdt.png",
+    ticker: "usdt",
+    minimum_transaction: 5000,
+    minimum_transaction_coin: "usdt",
+    minimum_fee: 500,
+    minimum_fee_coin: "usdt",
+    fee_percent: "0.5",
+    network_fee_estimation: "0.00042",
   },
   {
     name: "BUSD (Binance USD)",
     icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+    coin: "USDT",
+    logo: "https://api.cryptapi.io/media/token_logos/usdt.png",
+    ticker: "usdt",
+    minimum_transaction: 5000,
+    minimum_transaction_coin: "usdt",
+    minimum_fee: 500,
+    minimum_fee_coin: "usdt",
+    fee_percent: "0.5",
+    network_fee_estimation: "0.00042",
   },
 ];
 
 export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
   onComplete,
-  initialCountry = "",
-  initialStablecoin = "",
+  initialCountry = null,
+  initialStablecoin = null,
   availableCountries,
   availableStablecoins,
   className = "",
@@ -74,12 +110,11 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
   // State management
   const [countrySearch, setCountrySearch] = useState<string>("");
   const [stablecoinSearch, setStablecoinSearch] = useState<string>("");
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(
     initialCountry || null
   );
-  const [selectedStablecoin, setSelectedStablecoin] = useState<string | null>(
-    initialStablecoin || null
-  );
+  const [selectedStablecoin, setSelectedStablecoin] =
+    useState<Stablecoin | null>(initialStablecoin || null);
   // const [activeField, setActiveField] = useState<SelectionType>("country");
 
   const filteredCountries = countries.filter((country) =>
@@ -91,13 +126,14 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
   );
 
   // Handlers
+  // Handlers
   const handleSelection = useCallback(
-    (type: SelectionType, value: string): void => {
+    (type: SelectionType, value: Country | Stablecoin): void => {
       if (type === "country") {
-        setSelectedCountry(value);
+        setSelectedCountry(value as Country);
         setCountrySearch("");
       } else {
-        setSelectedStablecoin(value);
+        setSelectedStablecoin(value as Stablecoin);
         setStablecoinSearch("");
       }
     },
@@ -144,7 +180,7 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
           </div>
 
           <div className="selection-summary">
-            <div>
+            <div style={{ paddingBottom: "1rem" }}>
               <div className="label-name">Country</div>
               <div className="summary-card">
                 <div
@@ -153,15 +189,11 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
                   {selectedCountry ? (
                     <>
                       <img
-                        src={
-                          countries.find(
-                            (country) => country.name === selectedCountry
-                          )?.icon
-                        }
-                        alt={selectedCountry}
+                        src={selectedCountry.icon}
+                        alt={selectedCountry.name}
                         className="country-flag"
                       />
-                      {selectedCountry}
+                      {selectedCountry.name}
                     </>
                   ) : (
                     <>
@@ -182,15 +214,11 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
                   {selectedStablecoin ? (
                     <>
                       <img
-                        src={
-                          stablecoins.find(
-                            (coin) => coin.name === selectedStablecoin
-                          )?.icon
-                        }
-                        alt={selectedStablecoin}
+                        src={selectedStablecoin.icon}
+                        alt={selectedStablecoin.name}
                         className="country-flag"
                       />
-                      {selectedStablecoin}
+                      {selectedStablecoin.name}
                     </>
                   ) : (
                     <>
@@ -220,7 +248,7 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
                     <div
                       key={`country-${index}`}
                       className="result-item"
-                      onClick={() => handleSelection("country", country.name)}
+                      onClick={() => handleSelection("country", country)}
                     >
                       <img
                         src={country.icon}
@@ -253,7 +281,7 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
                     <div
                       key={`stablecoin-${index}`}
                       className="result-item"
-                      onClick={() => handleSelection("stablecoin", coin.name)}
+                      onClick={() => handleSelection("stablecoin", coin)}
                     >
                       <img
                         src={coin.icon}

@@ -49,26 +49,30 @@ type Story = StoryObj<typeof meta>;
 // Default story
 export const Default: Story = {
   args: {
-    onComplete: action("onComplete"),
+    onComplete: (selection) => {
+      action("onComplete")(selection);
+      console.log("Simulating form submission...", selection);
+      return new Promise((resolve) => setTimeout(resolve, 2000));
+    },
   },
 };
 
 // Pre-selected values
-export const WithPreselectedValues: Story = {
-  args: {
-    onComplete: action("onComplete"),
-    initialCountry: "United States",
-    initialStablecoin: "USDT (Tether)",
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "TransactionSelector with pre-selected country and stablecoin values.",
-      },
-    },
-  },
-};
+// export const WithPreselectedValues: Story = {
+//   args: {
+//     onComplete: action("onComplete"),
+//     initialCountry: "United States",
+//     initialStablecoin: "USDT (Tether)",
+//   },
+//   parameters: {
+//     docs: {
+//       description: {
+//         story:
+//           "TransactionSelector with pre-selected country and stablecoin values.",
+//       },
+//     },
+//   },
+// };
 
 const DEFAULT_COUNTRIES = [
   {
@@ -89,14 +93,41 @@ const DEFAULT_STABLECOINS = [
   {
     name: "USDT (Tether)",
     icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+    coin: "USDT",
+    logo: "https://api.cryptapi.io/media/token_logos/usdt.png",
+    ticker: "usdt",
+    minimum_transaction: 5000,
+    minimum_transaction_coin: "usdt",
+    minimum_fee: 500,
+    minimum_fee_coin: "usdt",
+    fee_percent: "0.5",
+    network_fee_estimation: "0.00042",
   },
   {
     name: "USDC (USD Coin)",
     icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+    coin: "USDT",
+    logo: "https://api.cryptapi.io/media/token_logos/usdt.png",
+    ticker: "usdt",
+    minimum_transaction: 5000,
+    minimum_transaction_coin: "usdt",
+    minimum_fee: 500,
+    minimum_fee_coin: "usdt",
+    fee_percent: "0.5",
+    network_fee_estimation: "0.00042",
   },
   {
     name: "BUSD (Binance USD)",
     icon: "https://api.cryptapi.io/media/token_logos/eurc_ethereum_XXqmqFq.png",
+    coin: "USDT",
+    logo: "https://api.cryptapi.io/media/token_logos/usdt.png",
+    ticker: "usdt",
+    minimum_transaction: 5000,
+    minimum_transaction_coin: "usdt",
+    minimum_fee: 500,
+    minimum_fee_coin: "usdt",
+    fee_percent: "0.5",
+    network_fee_estimation: "0.00042",
   },
 ];
 
@@ -154,6 +185,7 @@ export const LoadingSimulation: Story = {
   args: {
     onComplete: (selection) => {
       action("onComplete")(selection);
+      console.log("Simulating form submission...", selection);
       return new Promise((resolve) => setTimeout(resolve, 2000));
     },
   },
