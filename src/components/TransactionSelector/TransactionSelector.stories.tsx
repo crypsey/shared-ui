@@ -78,14 +78,17 @@ const DEFAULT_COUNTRIES = [
   {
     name: "United States",
     icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+    type: "country",
   },
   {
     name: "United Kingdom",
     icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+    type: "country",
   },
   {
     name: "Canada",
     icon: "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+    type: "country",
   },
 ];
 
@@ -102,6 +105,7 @@ const DEFAULT_STABLECOINS = [
     minimum_fee_coin: "usdt",
     fee_percent: "0.5",
     network_fee_estimation: "0.00042",
+    type: "coin",
   },
   {
     name: "USDC (USD Coin)",
@@ -115,6 +119,7 @@ const DEFAULT_STABLECOINS = [
     minimum_fee_coin: "usdt",
     fee_percent: "0.5",
     network_fee_estimation: "0.00042",
+    type: "coin",
   },
   {
     name: "BUSD (Binance USD)",
@@ -128,6 +133,7 @@ const DEFAULT_STABLECOINS = [
     minimum_fee_coin: "usdt",
     fee_percent: "0.5",
     network_fee_estimation: "0.00042",
+    type: "coin",
   },
 ];
 

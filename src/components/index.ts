@@ -12,3 +12,4 @@ export { default as PaymentSummary } from "./PayAnyOne/PaymentSummary";
 export { default as ItemMenu } from "./PayAnyOne/ItemMenu";
 export { default as ReceiverOption } from "./PayAnyOne/ReceiverOption";
 export { default as TransactionSelector } from "./TransactionSelector/TransactionSelector";
+export { default as SearchDropdown } from "./SearchDropdown/SearchDropdown";

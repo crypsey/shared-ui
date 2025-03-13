@@ -87,6 +87,7 @@
     "lucide-react": "^0.469.0",
     "qrcode.react": "^4.2.0",
     "react-bootstrap": "^2.10.7",
+    "react-dropdown-select": "^4.11.4",
     "react-spinners": "^0.15.0"
   },
   "packageManager": "pnpm@9.12.2+sha256.2ef6e547b0b07d841d605240dce4d635677831148cd30f6d564b8f4f928f73d2"
