@@ -5,7 +5,7 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   box-sizing: border-box;
 }
 
@@ -19,6 +19,7 @@
 .search-input-wrapper {
   position: relative;
   width: 100%;
+  background-color: white;
 }
 
 .search-input {
