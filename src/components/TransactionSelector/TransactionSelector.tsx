@@ -166,7 +166,7 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
           </div>
 
           <div className="selection-summary">
-            <div style={{ paddingBottom: "1rem" }}>
+            <div>
               <div className="label-name">Country</div>
               <div className="summary-card">
                 <SearchDropdown
