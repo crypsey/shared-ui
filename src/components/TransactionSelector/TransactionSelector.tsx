@@ -166,37 +166,27 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
           </div>
 
           <div className="selection-summary">
-            <div>
-              <div className="label-name">Country</div>
-              {/* <div className="summary-card"> */}
-              <SearchDropdown
-                items={countries}
-                placeholder="Select country"
-                onSelect={(item) =>
-                  handleSelectItem("country", item as Country)
-                }
-                onClear={(item: any) =>
-                  handleClearSelection("stablecoin", item as Stablecoin)
-                }
-              />
-              {/* </div> */}
-            </div>
+            <div className="label-name">Country</div>
+            <SearchDropdown
+              items={countries}
+              placeholder="Select country"
+              onSelect={(item) => handleSelectItem("country", item as Country)}
+              onClear={(item: any) =>
+                handleClearSelection("stablecoin", item as Stablecoin)
+              }
+            />
 
-            <div>
-              <div className="label-name">Stablecoin</div>
-              {/* <div className="summary-card"> */}
-              <SearchDropdown
-                items={stablecoins}
-                placeholder="Select stablecoin"
-                onSelect={(item) =>
-                  handleSelectItem("stablecoin", item as Stablecoin)
-                }
-                onClear={(item: any) =>
-                  handleClearSelection("stablecoin", item as Stablecoin)
-                }
-              />
-              {/* </div> */}
-            </div>
+            <div className="label-name">Stablecoin</div>
+            <SearchDropdown
+              items={stablecoins}
+              placeholder="Select stablecoin"
+              onSelect={(item) =>
+                handleSelectItem("stablecoin", item as Stablecoin)
+              }
+              onClear={(item: any) =>
+                handleClearSelection("stablecoin", item as Stablecoin)
+              }
+            />
           </div>
           <button
             className="continue-button"
