@@ -50,7 +50,7 @@
 .label-name {
   font-size: 14px;
   color: var(--text-secondary);
-  padding-bottom: 0.5rem;
+  /* padding-bottom: 0.5rem; */
 }
 
 .selection-status {
