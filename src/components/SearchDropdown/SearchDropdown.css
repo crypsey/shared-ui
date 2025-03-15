@@ -5,16 +5,15 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  /* padding: 0 1rem; */
   box-sizing: border-box;
 }
 
 /* Apply consistent box-sizing to all elements */
-.search-container *,
+/* .search-container *,
 .search-container *:before,
 .search-container *:after {
   box-sizing: border-box;
-}
+} */
 
 .search-input-wrapper {
   position: relative;
@@ -160,9 +159,9 @@
 
 /* Mobile optimizations */
 @media (max-width: 640px) {
-  .search-container {
+  /* .search-container {
     padding: 0 0rem;
-  }
+  } */
 
   .search-input {
     padding: 0.625rem 2.25rem 0.625rem 2.25rem;
