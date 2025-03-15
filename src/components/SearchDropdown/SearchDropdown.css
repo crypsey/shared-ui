@@ -1,11 +1,11 @@
 /* SearchDropdown.css */
 
 .search-container {
-  position: relative;
+  /* position: relative;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  box-sizing: border-box;
+  box-sizing: border-box; */
 }
 
 /* Apply consistent box-sizing to all elements */
