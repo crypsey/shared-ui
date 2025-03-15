@@ -84,7 +84,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({
     <div className="search-container">
       {/* Search Input */}
       {!selectedItem ? (
-        <div className="relative">
+        <div>
           <input
             type="text"
             value={inputValue}
