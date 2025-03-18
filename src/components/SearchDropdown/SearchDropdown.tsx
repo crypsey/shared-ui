@@ -140,7 +140,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({
       )}
 
       {/* Dropdown Results */}
-      {isOpen && (
+      {/* {isOpen && (
         <div ref={dropdownRef} className="dropdown">
           {results.map((item, index) => (
             <div
@@ -157,7 +157,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
