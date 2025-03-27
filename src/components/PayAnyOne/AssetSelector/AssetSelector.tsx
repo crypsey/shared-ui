@@ -1,11 +1,10 @@
 import React, {
   useState,
   ChangeEvent,
+  useEffect,
+  useCallback,
   useRef,
-  Dispatch,
-  SetStateAction,
 } from "react";
-import { ItemMenu } from "../ItemMenu/ItemMenu";
 import "./AssetSelector.css";
 
 interface Token {
@@ -17,6 +16,8 @@ interface Token {
   ticker?: string;
 }
 
+type SetValueFunction = (setter: (value: string) => void) => void;
+
 interface AssetSelectorProps {
   headerTitle: string;
   initialAmount?: string;
@@ -24,12 +25,11 @@ interface AssetSelectorProps {
   currencyIcon?: string;
   disabled?: boolean;
   error?: boolean;
-  initialToken: Token;
   onAmountChange?: (value: string) => void;
   onItemChange?: (token: Token) => void;
-  items: Token[];
-  dropdownTitle: string;
-  setValue?: Dispatch<SetStateAction<string>>;
+  setValue?: SetValueFunction; // Use our specific type
+  logo: string;
+  symbol: string;
 }
 
 const AssetSelector: React.FC<AssetSelectorProps> = ({
@@ -37,50 +37,84 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
   initialAmount = "100.00",
   disabled,
   error,
-  initialToken,
   onAmountChange,
-  onItemChange,
-  items,
-  dropdownTitle,
-  setValue: externalSetValue,
+  setValue,
+  logo,
+  symbol,
 }) => {
-  const [internalValue, setInternalValue] = useState<string>(initialAmount);
-  const [selectedItem, setSelectedItem] = useState<Token>(initialToken);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const tokenSectionRef = useRef<HTMLDivElement>(null);
-  const [menuPosition, setMenuPosition] = useState<DOMRect | undefined>();
+  const [internalValue, setInternalValue] = useState<string>("");
+  const isInitialMount = useRef(true);
+  const previousInitialAmount = useRef(initialAmount);
+  
+  const formatNumberWithCommas = useCallback((value: string): string => {
+    if (!value) return "";
+    
+    if (value.startsWith('.')) {
+      value = '0' + value;
+    }
+  
+    if (value.includes('.')) {
+      const [integerPart, decimalPart] = value.split('.');
+      
+      if (!integerPart || /^0+$/.test(integerPart)) {
+        return "0." + decimalPart;
+      }
+      
+      const formattedInteger = Number(integerPart).toLocaleString('en-US');
+      
+      return formattedInteger + '.' + decimalPart;
+    } else {
+      
+      if (value === '' || /^0+$/.test(value)) {
+        return value === '' ? '' : '0';
+      }
+      return Number(value).toLocaleString('en-US');
+    }
+  }, []);
 
-  const setValue = externalSetValue || setInternalValue;
-  const value = externalSetValue ? internalValue : internalValue;
+  const setFormattedInternalValue = useCallback((value: string) => {
+    const formattedValue = formatNumberWithCommas(value);
+    setInternalValue(formattedValue);
+  }, [formatNumberWithCommas]);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      setFormattedInternalValue(initialAmount);
+      isInitialMount.current = false;
+    }
+  }, [initialAmount, setFormattedInternalValue]);
+
+  useEffect(() => {
+    if (!isInitialMount.current && initialAmount !== previousInitialAmount.current) {
+      setFormattedInternalValue(initialAmount);
+      previousInitialAmount.current = initialAmount;
+    }
+  }, [initialAmount, setFormattedInternalValue]);
+
+
+  useEffect(() => {
+    if (setValue && typeof setValue === 'function') {
+      setValue(setFormattedInternalValue);
+    }
+  }, [setValue]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     if (inputValue === "") {
-      setValue("");
+      setInternalValue("");
       onAmountChange?.("");
       return;
     }
-    const cleanedValue = inputValue.replace(/[^\d.]/g, "");
-    const parts = cleanedValue.split(".");
+    
+    const rawValue = inputValue.replace(/[^0-9.]/g, "");
+    const parts = rawValue.split(".");
     if (parts.length > 2) return;
 
-    // Limit decimal places to 8 (standard for crypto)
     if (parts[1] && parts[1].length > 8) return;
-
-    setValue(cleanedValue);
-    onAmountChange?.(cleanedValue);
-  };
-
-  const handleTokenClick = () => {
-    if (disabled) return;
-    const rect = tokenSectionRef.current?.getBoundingClientRect();
-    setMenuPosition(rect);
-    setIsMenuOpen(true);
-  };
-
-  const handleTokenSelect = (token: Token) => {
-    setSelectedItem(token);
-    onItemChange?.(token);
+    
+    onAmountChange?.(rawValue);
+    
+    setFormattedInternalValue(rawValue);
   };
 
   return (
@@ -91,42 +125,18 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
           <input
             type="text"
             className="amount-input"
-            value={value}
+            value={internalValue}
             onChange={handleInputChange}
             placeholder="0.00"
             inputMode="decimal"
             disabled={disabled}
           />
-          <div
-            ref={tokenSectionRef}
-            onClick={handleTokenClick}
-            className="youpay-info"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                handleTokenClick();
-              }
-            }}
-          >
-            <img
-              src={selectedItem.icon || selectedItem.logo}
-              alt={`${selectedItem.name || selectedItem.coin} logo`}
-              className="youpay-icon"
-            />
-            <span className="youpay-symbol">
-              {selectedItem?.symbol?.toLocaleUpperCase() ||
-                selectedItem?.ticker?.toLocaleUpperCase()}
-            </span>
+          <div className="youpay-info">
+            <img src={logo} alt={`logo`} className="youpay-icon" />
+            <span className="youpay-symbol">{symbol.toLocaleUpperCase()}</span>
           </div>
         </div>
       </div>
-      <ItemMenu
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        onSelect={handleTokenSelect}
-        anchorRect={menuPosition}
-        items={items}
-        title={dropdownTitle}
-      />
     </div>
   );
 };
