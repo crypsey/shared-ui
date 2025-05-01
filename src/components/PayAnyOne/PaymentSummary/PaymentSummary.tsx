@@ -30,7 +30,7 @@ const PaymentSummary: React.FC<IPaymentSummaryProps> = ({
       <div className="summary-item">
         <span className="summary-label">Total amount</span>
         <span className="summary-value summary-value--highlight">
-          {totalAmount}
+          {totalAmount} CAD
         </span>
       </div>
 

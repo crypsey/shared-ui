@@ -1,15 +1,27 @@
 import React, { useState, useRef, useEffect, JSX } from "react";
+
 import {
   CreditCard,
-  Wallet,
-  PiggyBank,
   Building2,
   LucideIcon,
   ChevronDown,
+  Building,
+  Smartphone,
+  Send,
+  MessageSquare,
+  CircleDollarSign,
 } from "lucide-react";
 import "./ReceiverOption.css";
 
-type AccountType = "checking" | "savings" | "business" | "wallet";
+type AccountType =
+  | "bank"
+  | "mobileWallet"
+  | "cashPickUp"
+  | "UPI"
+  | "aliPay"
+  | "weChat"
+  | "paypal"
+  | "crypto";
 
 interface AccountTypeConfig {
   icon: LucideIcon;
@@ -28,68 +40,105 @@ type AccountTypes = {
 };
 
 const accountTypes: AccountTypes = {
-  checking: {
-    icon: CreditCard,
+  bank: {
+    icon: Building,
     color: "icon-checking",
   },
-  savings: {
-    icon: PiggyBank,
-    color: "icon-savings",
-  },
-  business: {
-    icon: Building2,
+  mobileWallet: {
+    icon: Smartphone,
     color: "icon-business",
   },
-  wallet: {
-    icon: Wallet,
+  cashPickUp: {
+    icon: Building2,
+    color: "icon-wallet",
+  },
+  UPI: {
+    icon: Send,
+    color: "icon-wallet",
+  },
+  aliPay: {
+    icon: CreditCard,
+    color: "icon-wallet",
+  },
+  weChat: {
+    icon: MessageSquare,
+    color: "icon-wallet",
+  },
+  paypal: {
+    icon: CreditCard,
+    color: "icon-savings",
+  },
+  crypto: {
+    icon: CircleDollarSign,
     color: "icon-wallet",
   },
 };
 
-const accounts: Account[] = [
+const defaultAccounts: Account[] = [
   {
     id: "1",
-    name: "Personal Checking",
+    name: "bank",
     number: "**** 1234",
-    type: "checking",
+    type: "bank",
   },
   {
     id: "2",
-    name: "Savings Account",
+    name: "mobileWallet",
     number: "**** 5678",
-    type: "savings",
+    type: "mobileWallet",
   },
   {
     id: "3",
-    name: "Business Account",
+    name: "cashPickUp",
     number: "**** 9012",
-    type: "business",
+    type: "cashPickUp",
   },
   {
     id: "4",
+    name: "UPI",
+    number: "**** 3456",
+    type: "UPI",
+  },
+  {
+    id: "5",
+    name: "aliPay",
+    number: "**** 3456",
+    type: "aliPay",
+  },
+  {
+    id: "6",
     name: "Digital Wallet",
     number: "**** 3456",
-    type: "wallet",
+    type: "weChat",
   },
 ];
 
 interface ReceiverOptionProps {
-  accounts: Account[];
+  accounts?: Account[];
   onAccountChange?: (account: Account | null) => void;
   defaultAccount?: string;
 }
 
 const ReceiverOption: React.FC<ReceiverOptionProps> = ({
+  accounts = [],
   onAccountChange,
   defaultAccount,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [displayAccounts, setDisplayAccounts] = useState<Account[]>(
+    accounts.length > 0 ? accounts : defaultAccounts
+  );
+
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(
     defaultAccount
       ? accounts.find((acc) => acc.id === defaultAccount) || null
       : null
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setDisplayAccounts(accounts.length > 0 ? accounts : defaultAccounts);
+  }, [accounts]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -138,7 +187,7 @@ const ReceiverOption: React.FC<ReceiverOptionProps> = ({
             </>
           ) : (
             <>
-              {getAccountIcon("checking")}
+              {getAccountIcon("bank")}
               <span className="account-name">Select reciving method</span>
             </>
           )}
@@ -149,14 +198,13 @@ const ReceiverOption: React.FC<ReceiverOptionProps> = ({
       <div className={`dropdown-content ${isOpen ? "open" : ""}`}>
         {accounts.map((account) => (
           <div
-            key={account.id}
+            key={account.name}
             className="dropdown-item"
             onClick={() => handleSelect(account)}
           >
             {getAccountIcon(account.type)}
             <div className="account-info">
               <span className="account-name">{account.name}</span>
-              <span className="account-number">{account.number}</span>
             </div>
           </div>
         ))}
