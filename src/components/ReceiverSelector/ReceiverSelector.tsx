@@ -27,6 +27,11 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
   // State to track which dropdown is currently open
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
 
+  // New state to track the selected receiver
+  const [selectedReceiverId, setSelectedReceiverId] = useState<number | null>(
+    null
+  );
+
   // Toggle dropdown menu
   const toggleDropdown = (contactId: number, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -69,6 +74,14 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
     setOpenDropdownId(null);
   };
 
+  // Handle receiver selection
+  const handleSelectReceiver = (contact: Receiver) => {
+    setSelectedReceiverId(contact.id);
+    if (onSelectReceiver) {
+      onSelectReceiver(contact);
+    }
+  };
+
   return (
     <div className="receiver-selector-container">
       <div className="receiver-selector-header">
@@ -92,8 +105,8 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
           {receivers.map((contact) => (
             <div
               key={contact.id}
-              className="contact-item"
-              onClick={() => onSelectReceiver?.(contact)}
+              className={`contact-item ${selectedReceiverId === contact.id ? "selected" : ""}`}
+              onClick={() => handleSelectReceiver(contact)}
             >
               <div className="contact-info">
                 <div className="flag-container">
