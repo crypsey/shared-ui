@@ -70,17 +70,17 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
   };
 
   return (
-    <div className="selector-container">
-      <div className="selector-header">
-        <h1 className="selector-title">Who are you sending to?</h1>
+    <div className="receiver-selector-container">
+      <div className="receiver-selector-header">
+        <h1 className="receiver-selector-title">Who are you sending to?</h1>
 
         {/* Add new receiver button */}
-        <div className="add-receiver" onClick={onAddReceiver}>
-          <div className="icon-container">
-            <Plus className="add-icon" size={24} />
+        <button className="add-receiver-button" onClick={onAddReceiver}>
+          <div className="add-icon-wrapper">
+            <Plus className="add-icon" size={20} />
           </div>
-          <span className="receiver-text">Add receiver</span>
-        </div>
+          <span className="add-text">Add receiver</span>
+        </button>
 
         {/* Section title */}
         <div>
