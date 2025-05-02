@@ -14,3 +14,4 @@ export { default as ReceiverOption } from "./PayAnyOne/ReceiverOption";
 export { default as TransactionSelector } from "./TransactionSelector/TransactionSelector";
 export { default as SearchDropdown } from "./SearchDropdown/SearchDropdown";
 export { default as ReceiverSelector } from "./ReceiverSelector/ReceiverSelector";
+export { default as AddReceiverForm } from "./AddReceiverForm/AddReceiverForm";
