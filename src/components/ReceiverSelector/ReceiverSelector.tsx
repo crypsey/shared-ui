@@ -1,5 +1,5 @@
-import React from "react";
-import { Plus, MoreVertical } from "lucide-react";
+import React, { useState } from "react";
+import { Plus, MoreVertical, Edit, Trash2 } from "lucide-react";
 import "./ReceiverSelector.css";
 
 export type Receiver = {
@@ -13,15 +13,62 @@ interface ContactSelectorProps {
   receivers: Receiver[];
   onAddReceiver?: () => void;
   onSelectReceiver?: (receiver: Receiver) => void;
-  onMoreOptions?: (receiver: Receiver) => void;
+  onEditReceiver?: (receiver: Receiver) => void;
+  onDeleteReceiver?: (receiver: Receiver) => void;
 }
 
 const ContactSelector: React.FC<ContactSelectorProps> = ({
   receivers,
   onAddReceiver,
   onSelectReceiver,
-  onMoreOptions,
+  onEditReceiver,
+  onDeleteReceiver,
 }) => {
+  // State to track which dropdown is currently open
+  const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
+
+  // Toggle dropdown menu
+  const toggleDropdown = (contactId: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setOpenDropdownId(openDropdownId === contactId ? null : contactId);
+  };
+
+  // Close dropdown when clicking outside
+  const closeDropdown = () => {
+    setOpenDropdownId(null);
+  };
+
+  // Handle click outside to close dropdown
+  React.useEffect(() => {
+    const handleClickOutside = () => {
+      setOpenDropdownId(null);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  // Handle edit action
+  const handleEdit = (contact: Receiver, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onEditReceiver) {
+      onEditReceiver(contact);
+    }
+    setOpenDropdownId(null);
+  };
+
+  // Handle delete action
+  const handleDelete = (contact: Receiver, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onDeleteReceiver) {
+      onDeleteReceiver(contact);
+    }
+    setOpenDropdownId(null);
+  };
+
   return (
     <div className="selector-container">
       <div className="selector-header">
@@ -72,17 +119,34 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
                   <div className="contact-phone">{contact.phone}</div>
                 </div>
               </div>
-              <div>
+              <div className="more-options-container">
                 <button
                   className="more-button"
                   aria-label="More options"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onMoreOptions?.(contact);
-                  }}
+                  onClick={(e) => toggleDropdown(contact.id, e)}
                 >
                   <MoreVertical size={20} />
                 </button>
+
+                {/* Dropdown menu */}
+                {openDropdownId === contact.id && (
+                  <div className="dropdown-menu">
+                    <button
+                      className="dropdown-item"
+                      onClick={(e) => handleEdit(contact, e)}
+                    >
+                      <Edit size={16} />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      className="dropdown-item"
+                      onClick={(e) => handleDelete(contact, e)}
+                    >
+                      <Trash2 size={16} />
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
