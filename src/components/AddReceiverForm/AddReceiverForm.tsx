@@ -1,10 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import "./AddReceiverForm.css";
-
-interface AddReceiverFormProps {
-  onSave?: (receiverData: ReceiverFormData) => void;
-  onCancel?: () => void;
-}
 
 export interface ReceiverFormData {
   firstName: string;
@@ -16,15 +11,22 @@ export interface ReceiverFormData {
   reasonForSending: string;
 }
 
+interface AddReceiverFormProps {
+  onSave?: (receiverData: ReceiverFormData) => void;
+  onCancel?: () => void;
+  receiveDetailsSections?: ReactNode;
+}
+
 const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
   onSave,
   onCancel,
+  receiveDetailsSections,
 }) => {
   const [formData, setFormData] = useState<ReceiverFormData>({
     firstName: "",
     middleName: "",
     lastName: "",
-    mobileCountryCode: "250", // Default code shown in screenshot
+    mobileCountryCode: "250", // Default code
     mobileNumber: "",
     city: "",
     reasonForSending: "",
@@ -66,7 +68,6 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
     }
   };
 
-  // Calculate character count for each field
   const getCharCount = (field: string) => {
     return formData[field as keyof ReceiverFormData]?.length || 0;
   };
@@ -120,41 +121,44 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
           <div className="character-count">{getCharCount("lastName")}/40</div>
         </div>
 
-        {/* Mobile Account Details Section */}
-        <div className="section-header">MOBILE ACCOUNT DETAILS</div>
-
-        {/* Mobile Number */}
-        <div className="form-group mobile-group">
-          <div className="country-code">
-            <input
-              type="text"
-              name="mobileCountryCode"
-              value={formData.mobileCountryCode}
-              onChange={handleInputChange}
-              className="country-code-input"
-              readOnly
-            />
-          </div>
-          <div className="mobile-number-container">
-            <input
-              type="text"
-              name="mobileNumber"
-              value={formData.mobileNumber}
-              onChange={handleInputChange}
-              placeholder="MTN mobile money"
-              className="form-control mobile-input"
-              maxLength={9}
-            />
-            <div className="character-count">
-              {getCharCount("mobileNumber")}/9
+        {/* Mobile Account Details Section (Dynamic) */}
+        {receiveDetailsSections ? (
+          receiveDetailsSections
+        ) : (
+          <>
+            <div className="section-header">MOBILE ACCOUNT DETAILS</div>
+            <div className="form-group mobile-group">
+              <div className="country-code">
+                <input
+                  type="text"
+                  name="mobileCountryCode"
+                  value={formData.mobileCountryCode}
+                  onChange={handleInputChange}
+                  className="country-code-input"
+                  readOnly
+                />
+              </div>
+              <div className="mobile-number-container">
+                <input
+                  type="text"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleInputChange}
+                  placeholder="MTN mobile money"
+                  className="form-control mobile-input"
+                  maxLength={9}
+                />
+                <div className="character-count">
+                  {getCharCount("mobileNumber")}/9
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
 
         {/* Receiver's Address Section */}
         <div className="section-header">RECEIVER'S ADDRESS</div>
 
-        {/* City/State */}
         <div className="form-group">
           <input
             type="text"
@@ -171,7 +175,6 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
         {/* Reason For Sending Section */}
         <div className="section-header">REASON FOR SENDING</div>
 
-        {/* Reason Dropdown */}
         <div className="form-group">
           <div className="dropdown-container">
             <div
@@ -200,10 +203,17 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
           </div>
         </div>
 
-        {/* Submit Button */}
-        <button type="submit" className="submit-button">
-          Save and continue
-        </button>
+        {/* Submit & Cancel Buttons */}
+        <div className="button-group">
+          <button type="submit" className="submit-button">
+            Save and continue
+          </button>
+          {onCancel && (
+            <button type="button" className="cancel-button" onClick={onCancel}>
+              Cancel
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );
