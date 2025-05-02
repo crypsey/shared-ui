@@ -1,0 +1,200 @@
+.add-receiver-container {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    sans-serif;
+}
+
+.add-receiver-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #1a1a1a;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.form-control {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  font-size: 17px;
+  border: 1px solid #e0e0e6;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #1a1a1a;
+  transition: all 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #bdbdbd;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #7b61ff;
+  box-shadow: 0 0 0 1px #7b61ff;
+}
+
+.character-count {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #bdbdbd;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.optional-label {
+  font-size: 17px;
+  color: #757575;
+  margin: -8px 0 8px 4px;
+}
+
+.section-header {
+  font-size: 14px;
+  font-weight: 500;
+  color: #757575;
+  margin: 32px 0 16px;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile group styling */
+.mobile-group {
+  display: flex;
+  gap: 12px;
+}
+
+.country-code {
+  width: 86px;
+  flex-shrink: 0;
+}
+
+.country-code-input {
+  width: 100%;
+  height: 56px;
+  border: 1px solid #e0e0e6;
+  border-radius: 12px;
+  background-color: #f5f5f7;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.mobile-number-container {
+  position: relative;
+  flex-grow: 1;
+}
+
+.mobile-input {
+  padding-right: 60px; /* Space for the character count */
+}
+
+/* Dropdown styles */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-select {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  border: 1px solid #e0e0e6;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #bdbdbd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-select span.has-value {
+  color: #1a1a1a;
+}
+
+.dropdown-arrow {
+  color: #757575;
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #e0e0e6;
+  border-radius: 12px;
+  margin-top: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f7;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  height: 56px;
+  background-color: #7b61ff;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 40px;
+}
+
+.submit-button:hover {
+  background-color: #6b51ef;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(107, 81, 239, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .add-receiver-container {
+    padding: 16px 16px 24px;
+  }
+
+  .add-receiver-title {
+    font-size: 28px;
+  }
+
+  .form-control,
+  .country-code-input,
+  .dropdown-select,
+  .submit-button {
+    height: 52px;
+  }
+}
