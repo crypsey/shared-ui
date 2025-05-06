@@ -78,6 +78,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
 
       <form onSubmit={handleSubmit}>
         {/* First Name */}
+        <div className="optional-label">First Name</div>
         <div className="form-group">
           <input
             type="text"
@@ -111,14 +112,14 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
         <div className="form-group">
           <input
             type="text"
-            name="lastName"
-            value={formData.lastName}
+            name="email"
+            value={formData.email}
             onChange={handleInputChange}
             placeholder="Last name"
             className="form-control"
             maxLength={40}
           />
-          <div className="character-count">{getCharCount("lastName")}/40</div>
+          <div className="character-count">{getCharCount("email")}/40</div>
         </div>
 
         {/* Mobile Account Details Section (Dynamic) */}
@@ -157,7 +158,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
         )}
 
         {/* Receiver's Address Section */}
-        <div className="section-header">RECEIVER'S ADDRESS</div>
+        <div className="optional-label">RECEIVER'S ADDRESS</div>
 
         <div className="form-group">
           <input
@@ -173,7 +174,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
         </div>
 
         {/* Reason For Sending Section */}
-        <div className="section-header">REASON FOR SENDING</div>
+        <div className="optional-label">REASON FOR SENDING</div>
 
         <div className="form-group">
           <div className="dropdown-container">
