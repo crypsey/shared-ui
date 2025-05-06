@@ -3,8 +3,8 @@ import "./AddReceiverForm.css";
 
 export interface ReceiverFormData {
   firstName: string;
-  middleName: string;
   lastName: string;
+  email: string;
   mobileCountryCode: string;
   mobileNumber: string;
   city: string;
@@ -24,7 +24,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
 }) => {
   const [formData, setFormData] = useState<ReceiverFormData>({
     firstName: "",
-    middleName: "",
+    email: "",
     lastName: "",
     mobileCountryCode: "250", // Default code
     mobileNumber: "",
@@ -91,23 +91,23 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
           <div className="character-count">{getCharCount("firstName")}/40</div>
         </div>
 
-        {/* Middle Name */}
+        {/* Last Name */}
+        <div className="optional-label">Last Name</div>
         <div className="form-group">
           <input
             type="text"
-            name="middleName"
-            value={formData.middleName}
+            name="lastName"
+            value={formData.lastName}
             onChange={handleInputChange}
-            placeholder="Middle name"
+            placeholder="Last name"
             className="form-control"
             maxLength={40}
           />
-          <div className="character-count">{getCharCount("middleName")}/40</div>
+          <div className="character-count">{getCharCount("lastName")}/40</div>
         </div>
 
-        <div className="optional-label">Optional</div>
-
-        {/* Last Name */}
+        {/* Email */}
+        <div className="optional-label">Email</div>
         <div className="form-group">
           <input
             type="text"
