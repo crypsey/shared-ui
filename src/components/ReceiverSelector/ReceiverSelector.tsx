@@ -6,7 +6,7 @@ export type Receiver = {
   id: number;
   name: string;
   phone: string;
-  country: string;
+  contryflag: string;
 };
 
 interface ContactSelectorProps {
@@ -110,20 +110,8 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
             >
               <div className="contact-info">
                 <div className="flag-container">
-                  {/* // get contryflag from receiver object */}
                   <div className="canadian-flag">
-                    <div className="flag-red"></div>
-                    <div className="flag-white"></div>
-                    <div className="maple-leaf">
-                      <svg
-                        viewBox="0 0 50 50"
-                        fill="currentColor"
-                        width="16"
-                        height="16"
-                      >
-                        <path d="M25,0 L30,20 L50,20 L35,32 L42,50 L25,38 L8,50 L15,32 L0,20 L20,20 Z" />
-                      </svg>
-                    </div>
+                    <img className="canadian-flag" src={contact.contryflag} />
                   </div>
                 </div>
                 <div className="contact-details">

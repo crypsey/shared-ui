@@ -24,8 +24,8 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
 }) => {
   const [formData, setFormData] = useState<ReceiverFormData>({
     firstName: "",
-    email: "",
     lastName: "",
+    email: "",
     mobileCountryCode: "250", // Default code
     mobileNumber: "",
     city: "",

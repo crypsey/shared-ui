@@ -12,8 +12,13 @@ export default {
 
 // Mock data
 const mockReceivers: Receiver[] = [
-  { id: 1, name: "Patrick Muhire", phone: "+250 78 943 8209", country: "CA" },
-  { id: 2, name: "Jane Doe", phone: "+250 78 123 4567", country: "CA" },
+  {
+    id: 1,
+    name: "Patrick Muhire",
+    phone: "+250 78 943 8209",
+    contryflag: "CA",
+  },
+  { id: 2, name: "Jane Doe", phone: "+250 78 123 4567", contryflag: "CA" },
 ];
 
 // Template
