@@ -6,7 +6,7 @@ export type Receiver = {
   id: number;
   name: string;
   phone: string;
-  contryflag: string;
+  countryFlag: string;
 };
 
 interface ContactSelectorProps {
@@ -111,7 +111,7 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
               <div className="contact-info">
                 <div className="flag-container">
                   <div className="canadian-flag">
-                    <img className="canadian-flag" src={contact.contryflag} />
+                    <img className="canadian-flag" src={contact.countryFlag} />
                   </div>
                 </div>
                 <div className="contact-details">
