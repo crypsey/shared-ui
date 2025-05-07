@@ -15,21 +15,24 @@ interface AddReceiverFormProps {
   onSave?: (receiverData: ReceiverFormData) => void;
   onCancel?: () => void;
   receiveDetailsSections?: ReactNode;
+  defaultValues?: Partial<ReceiverFormData>;
 }
 
 const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
   onSave,
   onCancel,
   receiveDetailsSections,
+  defaultValues = {},
 }) => {
   const [formData, setFormData] = useState<ReceiverFormData>({
     firstName: "",
     lastName: "",
     email: "",
-    mobileCountryCode: "250", // Default code
+    mobileCountryCode: "250",
     mobileNumber: "",
     city: "",
     reasonForSending: "",
+    ...defaultValues,
   });
 
   const [reasonDropdownOpen, setReasonDropdownOpen] = useState(false);
