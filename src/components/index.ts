@@ -15,3 +15,4 @@ export { default as TransactionSelector } from "./TransactionSelector/Transactio
 export { default as SearchDropdown } from "./SearchDropdown/SearchDropdown";
 export { default as ReceiverSelector } from "./ReceiverSelector/ReceiverSelector";
 export { default as AddReceiverForm } from "./AddReceiverForm/AddReceiverForm";
+export { default as TransferSummary } from "./TransferSummary/TransferSummary";
