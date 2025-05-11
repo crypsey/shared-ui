@@ -10,7 +10,7 @@
   --disabled-color: #d1d5db;
 }
 
-.transaction-selector-container {
+.transaction-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 24px;
