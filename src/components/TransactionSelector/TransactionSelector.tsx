@@ -159,8 +159,8 @@ export const TransactionSelector: React.FC<TransactionSelectorProps> = ({
           <RingLoader color={"red"} size={80} loading={loading} />
         </div>
       ) : (
-        <div className={`transaction-container`}>
-          <div className="transaction-selector-header">
+        <div className={`selector-container`}>
+          <div className="selector-header">
             <h1>Create Transaction</h1>
             <p>Select country and preferred stablecoin</p>
           </div>

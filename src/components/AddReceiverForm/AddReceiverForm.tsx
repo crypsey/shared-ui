@@ -13,16 +13,18 @@ export interface ReceiverFormData {
 
 interface AddReceiverFormProps {
   onSave?: (receiverData: ReceiverFormData) => void;
-  onCancel?: () => void;
   receiveDetailsSections?: ReactNode;
   defaultValues?: Partial<ReceiverFormData>;
+  formTile: string;
+  disableSave?: boolean;
 }
 
 const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
   onSave,
-  onCancel,
   receiveDetailsSections,
   defaultValues = {},
+  formTile,
+  disableSave,
 }) => {
   const [formData, setFormData] = useState<ReceiverFormData>({
     firstName: "",
@@ -77,7 +79,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
 
   return (
     <div className="add-receiver-container">
-      <h1 className="add-receiver-title">Add new receiver</h1>
+      <h1 className="add-receiver-title">{formTile}</h1>
 
       <form onSubmit={handleSubmit}>
         {/* First Name */}
@@ -209,14 +211,9 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
 
         {/* Submit & Cancel Buttons */}
         <div className="button-group">
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" disabled={disableSave}>
             Save and continue
           </button>
-          {onCancel && (
-            <button type="button" className="cancel-button" onClick={onCancel}>
-              Cancel
-            </button>
-          )}
         </div>
       </form>
     </div>

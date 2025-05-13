@@ -4,12 +4,14 @@ import "./PaymentSummary.css";
 interface IPaymentSummaryProps {
   totalFees?: string;
   totalAmount: string;
+  selectedPayment?: boolean;
   onNext?: () => void;
 }
 
 const PaymentSummary: React.FC<IPaymentSummaryProps> = ({
   totalFees = "0.00 CAD",
   totalAmount = "100.00 CAD",
+  selectedPayment = false,
   onNext,
 }) => {
   const handleNext = (): void => {
@@ -30,7 +32,7 @@ const PaymentSummary: React.FC<IPaymentSummaryProps> = ({
       <div className="summary-item">
         <span className="summary-label">Total amount</span>
         <span className="summary-value summary-value--highlight">
-          {totalAmount} CAD
+          {totalAmount}
         </span>
       </div>
 
@@ -39,6 +41,7 @@ const PaymentSummary: React.FC<IPaymentSummaryProps> = ({
         onClick={handleNext}
         type="button"
         aria-label="Proceed to next step"
+        disabled={!selectedPayment}
       >
         Next
       </button>

@@ -10,7 +10,6 @@ const meta: Meta<typeof AddReceiverForm> = {
   tags: ["autodocs"],
   argTypes: {
     onSave: { action: "saved" },
-    onCancel: { action: "cancelled" },
   },
 };
 
@@ -26,7 +25,6 @@ export const Default: Story = {
 export const Filled: Story = {
   args: {
     onSave: undefined,
-    onCancel: undefined,
   },
   parameters: {
     initialFormData: {

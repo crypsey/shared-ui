@@ -1,4 +1,16 @@
 /* styles.css */
+/* TransactionSelector.css */
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #1d4ed8;
+  --background-color: #ffffff;
+  --border-color: #e5e7eb;
+  --text-color: #1f2937;
+  --text-secondary: #6b7280;
+  --success-color: #10b981;
+  --disabled-color: #d1d5db;
+}
+
 .payment-summary {
   background-color: #f9fafb;
   padding: 24px;
@@ -53,6 +65,15 @@
 
 .next-button:hover {
   background-color: #6d28d9;
+}
+
+.next-button:disabled {
+  background-color: red;
+}
+
+.next-button:disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
 }
 
 .next-button:focus {
