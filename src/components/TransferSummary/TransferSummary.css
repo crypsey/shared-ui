@@ -12,7 +12,7 @@
 
 .summary-money-transfer-header {
   background-color: #8b5cf6; /* purple-600 */
-  padding: 1.5rem;
+  padding: 1rem;
   color: white;
   position: relative;
 }
@@ -25,7 +25,6 @@
 .header-summary-text h1 {
   font-size: 2.25rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 .header-summary-timing {
@@ -43,14 +42,11 @@
   display: flex;
 }
 
-.icon-container {
+.summary-icon-container {
   background-color: white;
-  border-radius: 9999px;
-  padding: 0.5rem;
-  margin-right: 0.25rem;
 }
 
-.icon-container:last-child {
+.summary-icon-container:last-child {
   background-color: #e5e7eb;
 }
 
@@ -83,7 +79,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .section-title {
@@ -174,9 +170,17 @@
 }
 
 .desktop-action-button {
-  padding: 1rem 0;
+  border-radius: 25px;
   font-size: 1.125rem;
-  margin-bottom: 1rem;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.desktop-action-button-cancle {
+  border-radius: 25px;
+  font-size: 1.125rem;
+  text-align: center;
+  padding: 10px 20px;
 }
 
 .mobile-view {
@@ -199,7 +203,26 @@
 }
 
 .mobile-action-button {
-  padding: 0.75rem 0;
-  margin-bottom: 0.75rem;
+  border-radius: 25px;
   font-size: 1rem;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.cancle-button {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .header-summary-text h1 {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .header-summary-timing {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+  }
 }

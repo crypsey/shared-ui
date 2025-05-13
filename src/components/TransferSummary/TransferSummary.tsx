@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './TransferSummary.css'
+import React, { useState, useEffect, ReactNode } from "react";
+import "./TransferSummary.css";
 
 interface ExchangeRate {
   from: string;
@@ -18,7 +18,7 @@ interface TransferDetails {
 
 interface ReceiverDetails {
   name: string;
-  mobileAccount: string;
+  mobileAccount?: string;
   city: string;
   reason: string;
 }
@@ -29,7 +29,12 @@ export interface TransferSummaryProps {
   receiverDetails: ReceiverDetails;
   onEditTransfer?: () => void;
   onEditReceiver?: () => void;
+  onCalcle?: () => void;
   onNextClick?: () => void;
+  cancleTitle?: string;
+  continueTitle?: string;
+  countryFlag: string;
+  receiveDetailsSections?: ReactNode;
 }
 
 export const TransferSummary: React.FC<TransferSummaryProps> = ({
@@ -38,7 +43,12 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
   receiverDetails,
   onEditTransfer = () => {},
   onEditReceiver = () => {},
+  onCalcle = () => {},
   onNextClick = () => {},
+  cancleTitle = "Cancle",
+  continueTitle = "Continue",
+  countryFlag = "https://crypsey-country-flags.s3.us-east-2.amazonaws.com/in.svg",
+  receiveDetailsSections,
 }) => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -47,15 +57,15 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     // Initial check
     checkScreenSize();
-    
+
     // Add event listener
-    window.addEventListener('resize', checkScreenSize);
-    
+    window.addEventListener("resize", checkScreenSize);
+
     // Cleanup
-    return () => window.removeEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   return (
@@ -69,17 +79,8 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
               <span className="timing-icon">⏱</span> Within minutes
             </p>
           </div>
-          <div className="header-summary-icons">
-            <div className="icon-container">
-              <div className="icon icon-maple">
-                <span>🍁</span>
-              </div>
-            </div>
-            <div className="icon-container">
-              <div className="icon icon-briefcase">
-                <span>💼</span>
-              </div>
-            </div>
+          <div className="icon">
+            <img src={countryFlag} />
           </div>
         </div>
       </div>
@@ -93,89 +94,130 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
             <div>
               <div className="section-header-summary">
                 <h2 className="section-title">TRANSFER DETAILS</h2>
-                <button className="edit-button" onClick={onEditTransfer}>Edit</button>
+                {/* <button className="edit-button" onClick={onEditTransfer}>Edit</button> */}
               </div>
-              
+
               <div className="section-content mobile-section-content">
                 <div>
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Receive method</span>
-                    <span className="field-value">{transferDetails.receiveMethod}</span>
+                    <span className="field-value">
+                      {transferDetails.receiveMethod}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row mobile-field-row">
-                    <span className="field-label">Receive money<br />account</span>
-                    <span className="field-value">{transferDetails.receiveAccount}</span>
+                    <span className="field-label">
+                      Receive money
+                      <br />
+                      account
+                    </span>
+                    <span className="field-value">
+                      {transferDetails.receiveAccount}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Transfer amount</span>
-                    <span className="field-value">{transferDetails.transferAmount}</span>
+                    <span className="field-value">
+                      {transferDetails.transferAmount}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Transfer fee</span>
-                    <span className="field-value">{transferDetails.transferFee}</span>
+                    <span className="field-value">
+                      {transferDetails.transferFee}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Exchange rate</span>
-                    <span className="field-value text-right">{transferDetails.exchangeRate.from} = {transferDetails.exchangeRate.to}</span>
+                    <span className="field-value text-right">
+                      {transferDetails.exchangeRate.from} ={" "}
+                      {transferDetails.exchangeRate.to}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Total to receipt</span>
-                    <span className="field-value">{transferDetails.totalToReceipt}</span>
+                    <span className="field-value">
+                      {transferDetails.totalToReceipt}
+                    </span>
                   </div>
-                  
+
                   <div className="divider mobile-divider">
                     <div className="field-row">
                       <span className="field-label">Total amount</span>
-                      <span className="field-value total-amount">{transferDetails.totalAmount}</span>
+                      <span className="field-value total-amount">
+                        {transferDetails.totalAmount}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             {/* Receiver Details - Mobile */}
             <div>
               <div className="section-header-summary">
                 <h2 className="section-title">RECEIVER DETAILS</h2>
-                <button className="edit-button" onClick={onEditReceiver}>Edit</button>
+                {/* <button className="edit-button" onClick={onEditReceiver}>Edit</button> */}
               </div>
-              
+
               <div className="section-content mobile-section-content">
                 <div>
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Name</span>
                     <span className="field-value">{receiverDetails.name}</span>
                   </div>
-                  
-                  <div className="field-row mobile-field-row">
-                    <span className="field-label">MTN mobile<br />account</span>
-                    <span className="field-value">{receiverDetails.mobileAccount}</span>
-                  </div>
-                  
+
+                  {receiveDetailsSections ? (
+                    receiveDetailsSections
+                  ) : (
+                    <div className="field-row mobile-field-row">
+                      <span className="field-label">
+                        MTN mobile
+                        <br />
+                        account
+                      </span>
+                      <span className="field-value">
+                        {receiverDetails.mobileAccount}
+                      </span>
+                    </div>
+                  )}
+
                   <div className="field-row mobile-field-row">
                     <span className="field-label">City/Town</span>
                     <span className="field-value">{receiverDetails.city}</span>
                   </div>
-                  
+
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Reason for sending</span>
-                    <span className="field-value text-right">{receiverDetails.reason}</span>
+                    <span className="field-value text-right">
+                      {receiverDetails.reason}
+                    </span>
                   </div>
                 </div>
               </div>
-              
-              <button className="action-button mobile-action-button" onClick={onNextClick}>
-                Next
-              </button>
-              
-              <button className="action-button mobile-action-button" onClick={onNextClick}>
-                Next
-              </button>
+
+              <div>
+                <div className="cancle-button">
+                  <button
+                    className="action-button desktop-action-button-cancle"
+                    onClick={onCalcle}
+                  >
+                    {cancleTitle}
+                  </button>
+                </div>
+
+                <button
+                  className="action-button desktop-action-button"
+                  onClick={onNextClick}
+                >
+                  {continueTitle}
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -185,89 +227,148 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
             <div className="desktop-column">
               <div className="section-header-summary">
                 <h2 className="section-title">TRANSFER DETAILS</h2>
-                <button className="edit-button" onClick={onEditTransfer}>Edit</button>
+                {/* <button className="edit-button" onClick={onEditTransfer}>Edit</button> */}
               </div>
-              
+
               <div className="section-content desktop-section-content">
                 <div>
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Receive method</span>
-                    <span className="field-value desktop-field-value">{transferDetails.receiveMethod}</span>
+                    <span className="field-label desktop-field-label">
+                      Receive method
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {transferDetails.receiveMethod}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Receive money<br />account</span>
-                    <span className="field-value desktop-field-value">{transferDetails.receiveAccount}</span>
+                    <span className="field-label desktop-field-label">
+                      Receive money
+                      <br />
+                      account
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {transferDetails.receiveAccount}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Transfer amount</span>
-                    <span className="field-value desktop-field-value">{transferDetails.transferAmount}</span>
+                    <span className="field-label desktop-field-label">
+                      Transfer amount
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {transferDetails.transferAmount}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Transfer fee</span>
-                    <span className="field-value desktop-field-value">{transferDetails.transferFee}</span>
+                    <span className="field-label desktop-field-label">
+                      Transfer fee
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {transferDetails.transferFee}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Exchange rate</span>
-                    <span className="field-value desktop-field-value text-right">{transferDetails.exchangeRate.from} = {transferDetails.exchangeRate.to}</span>
+                    <span className="field-label desktop-field-label">
+                      Exchange rate
+                    </span>
+                    <span className="field-value desktop-field-value text-right">
+                      {transferDetails.exchangeRate.from} ={" "}
+                      {transferDetails.exchangeRate.to}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Total to receipt</span>
-                    <span className="field-value desktop-field-value">{transferDetails.totalToReceipt}</span>
+                    <span className="field-label desktop-field-label">
+                      Total to receipt
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {transferDetails.totalToReceipt}
+                    </span>
                   </div>
-                  
+
                   <div className="divider desktop-divider">
                     <div className="field-row">
-                      <span className="field-label desktop-field-label">Total amount</span>
-                      <span className="field-value desktop-total-value total-amount">{transferDetails.totalAmount}</span>
+                      <span className="field-label desktop-field-label">
+                        Total amount
+                      </span>
+                      <span className="field-value desktop-total-value total-amount">
+                        {transferDetails.totalAmount}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             {/* Right Column: Receiver Details - Desktop */}
             <div className="desktop-column">
               <div className="section-header-summary">
                 <h2 className="section-title">RECEIVER DETAILS</h2>
-                <button className="edit-button" onClick={onEditReceiver}>Edit</button>
+                {/* <button className="edit-button" onClick={onEditReceiver}>Edit</button> */}
               </div>
-              
+
               <div className="section-content desktop-section-content">
                 <div>
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Name</span>
-                    <span className="field-value desktop-field-value">{receiverDetails.name}</span>
+                    <span className="field-label desktop-field-label">
+                      Name
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {receiverDetails.name}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">MTN mobile<br />account</span>
-                    <span className="field-value desktop-field-value">{receiverDetails.mobileAccount}</span>
+                    <span className="field-label desktop-field-label">
+                      MTN mobile
+                      <br />
+                      account
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {receiverDetails.mobileAccount}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">City/Town</span>
-                    <span className="field-value desktop-field-value">{receiverDetails.city}</span>
+                    <span className="field-label desktop-field-label">
+                      City/Town
+                    </span>
+                    <span className="field-value desktop-field-value">
+                      {receiverDetails.city}
+                    </span>
                   </div>
-                  
+
                   <div className="field-row desktop-field-row">
-                    <span className="field-label desktop-field-label">Reason for sending</span>
-                    <span className="field-value desktop-field-value text-right">{receiverDetails.reason}</span>
+                    <span className="field-label desktop-field-label">
+                      Reason for sending
+                    </span>
+                    <span className="field-value desktop-field-value text-right">
+                      {receiverDetails.reason}
+                    </span>
                   </div>
                 </div>
               </div>
-              
-              <button className="action-button desktop-action-button" onClick={onNextClick}>
-                Next
-              </button>
-              
-              <button className="action-button desktop-action-button" onClick={onNextClick}>
-                Next
-              </button>
+
+              <div>
+                <div className="cancle-button">
+                  <button
+                    className="action-button desktop-action-button-cancle"
+                    onClick={onCalcle}
+                  >
+                    {cancleTitle}
+                  </button>
+                </div>
+
+                <button
+                  className="action-button desktop-action-button"
+                  onClick={onNextClick}
+                >
+                  {continueTitle}
+                </button>
+              </div>
             </div>
           </div>
         )}
