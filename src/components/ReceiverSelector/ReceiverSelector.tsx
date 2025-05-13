@@ -15,6 +15,10 @@ interface ContactSelectorProps {
   onSelectReceiver?: (receiver: Receiver) => void;
   onEditReceiver?: (receiver: Receiver) => void;
   onDeleteReceiver?: (receiver: Receiver) => void;
+  onCalcle?: () => void;
+  onNextClick?: () => void;
+  cancleTitle?: string;
+  continueTitle?: string;
 }
 
 const ContactSelector: React.FC<ContactSelectorProps> = ({
@@ -23,6 +27,10 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
   onSelectReceiver,
   onEditReceiver,
   onDeleteReceiver,
+  onCalcle = () => {},
+  onNextClick = () => {},
+  cancleTitle = "Cancle",
+  continueTitle = "Continue",
 }) => {
   // State to track which dropdown is currently open
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
@@ -151,6 +159,29 @@ const ContactSelector: React.FC<ContactSelectorProps> = ({
             </div>
           ))}
         </div>
+
+        {receivers ? (
+          <div>
+            <div className="cancle-button-receiver">
+              <button
+                className="action-button-receiver desktop-action-button-receiver-cancle"
+                onClick={onCalcle}
+              >
+                {cancleTitle}
+              </button>
+            </div>
+
+            <button
+              className="action-button-receiver desktop-action-button-receiver"
+              onClick={onNextClick}
+              disabled={selectedReceiverId === null}
+            >
+              {continueTitle}
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

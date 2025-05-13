@@ -3,7 +3,7 @@ import ResponsiveContactSelector from "./ReceiverSelector";
 import { Receiver } from "./ReceiverSelector";
 
 export default {
-  title: "Components/ContactSelector",
+  title: "Components/ReceiverSelector",
   component: ResponsiveContactSelector,
   parameters: {
     layout: "centered",

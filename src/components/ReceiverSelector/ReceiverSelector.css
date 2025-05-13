@@ -78,7 +78,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
 }
 
 .contact-item {
@@ -287,6 +287,35 @@
   background: none;
   border: none;
   color: blue;
+}
+
+.cancle-button-receiver {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.action-button-receiver {
+  background-color: #8b5cf6;
+  color: white;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.desktop-action-button-receiver {
+  border-radius: 25px;
+  font-size: 1.125rem;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.desktop-action-button-receiver-cancle {
+  border-radius: 25px;
+  font-size: 1.125rem;
+  text-align: center;
+  padding: 10px 20px;
 }
 
 /* Mobile adjustments */
