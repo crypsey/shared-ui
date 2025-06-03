@@ -106,7 +106,7 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                     </span>
                   </div>
 
-                  <div className="field-row mobile-field-row">
+                  {/* <div className="field-row mobile-field-row">
                     <span className="field-label">
                       Receive money
                       <br />
@@ -115,7 +115,7 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                     <span className="field-value">
                       {transferDetails.receiveAccount}
                     </span>
-                  </div>
+                  </div> */}
 
                   <div className="field-row mobile-field-row">
                     <span className="field-label">Transfer amount</span>
@@ -240,7 +240,7 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                       {transferDetails.receiveMethod}
                     </span>
                   </div>
-
+                  {/* 
                   <div className="field-row desktop-field-row">
                     <span className="field-label desktop-field-label">
                       Receive money
@@ -250,7 +250,7 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                     <span className="field-value desktop-field-value">
                       {transferDetails.receiveAccount}
                     </span>
-                  </div>
+                  </div> */}
 
                   <div className="field-row desktop-field-row">
                     <span className="field-label desktop-field-label">
