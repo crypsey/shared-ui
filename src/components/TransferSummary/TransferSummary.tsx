@@ -18,7 +18,7 @@ interface TransferDetails {
 
 interface ReceiverDetails {
   name: string;
-  mobileAccount?: string;
+  receiveAccount?: string;
   city: string;
   reason: string;
 }
@@ -177,12 +177,12 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                   ) : (
                     <div className="field-row mobile-field-row">
                       <span className="field-label">
-                        MTN mobile
+                        {transferDetails.receiveMethod}
                         <br />
                         account
                       </span>
                       <span className="field-value">
-                        {receiverDetails.mobileAccount}
+                        {receiverDetails.receiveAccount}
                       </span>
                     </div>
                   )}
@@ -323,12 +323,12 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
 
                   <div className="field-row desktop-field-row">
                     <span className="field-label desktop-field-label">
-                      MTN mobile
+                      {transferDetails.receiveMethod}
                       <br />
                       account
                     </span>
                     <span className="field-value desktop-field-value">
-                      {receiverDetails.mobileAccount}
+                      {receiverDetails.receiveAccount}
                     </span>
                   </div>
 
