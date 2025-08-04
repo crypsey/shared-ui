@@ -21,7 +21,8 @@ type AccountType =
   | "aliPay"
   | "weChat"
   | "paypal"
-  | "crypto";
+  | "crypto"
+  | "etransfer";
 
 interface AccountTypeConfig {
   icon: LucideIcon;
@@ -71,6 +72,10 @@ const accountTypes: AccountTypes = {
   crypto: {
     icon: CircleDollarSign,
     color: "icon-wallet",
+  },
+  etransfer: {
+    icon: Smartphone,
+    color: "icon-business",
   },
 };
 

@@ -84,6 +84,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.3.1",
+    "crypsey-shared-ui": "link:",
     "lucide-react": "^0.469.0",
     "qrcode.react": "^4.2.0",
     "react-bootstrap": "^2.10.7",
