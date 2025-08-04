@@ -18,7 +18,7 @@ interface TransferDetails {
 
 interface ReceiverDetails {
   name: string;
-  receiveAccount?: string;
+  receiveAccount: any;
   city: string;
   reason: string;
 }
@@ -67,6 +67,12 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
     // Cleanup
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+  const receiverAccount = () => {
+    if (receiverDetails.receiveAccount.type === "etransfer") {
+      return receiverDetails.receiveAccount.details["E-transfer email"];
+    }
+  };
 
   return (
     <div className="summary-money-transfer-container">
@@ -179,11 +185,8 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                       <span className="field-label">
                         {transferDetails.receiveMethod}
                         <br />
-                        account
                       </span>
-                      <span className="field-value">
-                        {receiverDetails.receiveAccount}
-                      </span>
+                      <span className="field-value">{receiverAccount()}</span>
                     </div>
                   )}
 
