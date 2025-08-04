@@ -328,10 +328,9 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
                     <span className="field-label desktop-field-label">
                       {transferDetails.receiveMethod}
                       <br />
-                      account
                     </span>
                     <span className="field-value desktop-field-value">
-                      {receiverDetails.receiveAccount}
+                      {receiverAccount()}
                     </span>
                   </div>
 
