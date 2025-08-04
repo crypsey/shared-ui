@@ -18,7 +18,12 @@ interface TransferDetails {
 
 interface ReceiverDetails {
   name: string;
-  receiveAccount: any;
+  receiverAccount: {
+    type: string;
+    details: {
+      [key: string]: string;
+    };
+  };
   city: string;
   reason: string;
 }
@@ -69,8 +74,8 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
   }, []);
 
   const receiverAccount = () => {
-    if (receiverDetails?.receiveAccount?.type === "etransfer") {
-      return receiverDetails.receiveAccount.details["E-transfer email"];
+    if (receiverDetails?.receiverAccount?.type === "etransfer") {
+      return receiverDetails.receiverAccount.details["E-transfer email"];
     }
   };
 
