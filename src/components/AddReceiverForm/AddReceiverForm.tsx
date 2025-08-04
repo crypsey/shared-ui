@@ -4,7 +4,7 @@ import "./AddReceiverForm.css";
 export interface ReceiverFormData {
   firstName: string;
   lastName: string;
-  email: string;
+  // email: string;
   mobileCountryCode: string;
   mobileNumber: string;
   city: string;
@@ -29,7 +29,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
   const [formData, setFormData] = useState<ReceiverFormData>({
     firstName: "",
     lastName: "",
-    email: "",
+    // email: "",
     mobileCountryCode: "250",
     mobileNumber: "",
     city: "",
@@ -113,7 +113,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
         </div>
 
         {/* Email */}
-        <div className="optional-label">Email</div>
+        {/* <div className="optional-label">Email</div>
         <div className="form-group">
           <input
             type="text"
@@ -125,7 +125,7 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
             maxLength={40}
           />
           <div className="character-count">{getCharCount("email")}/40</div>
-        </div>
+        </div> */}
 
         {/* Mobile Account Details Section (Dynamic) */}
         {receiveDetailsSections ? (
@@ -211,7 +211,11 @@ const AddReceiverForm: React.FC<AddReceiverFormProps> = ({
 
         {/* Submit & Cancel Buttons */}
         <div className="button-group">
-          <button type="submit" className="submit-button" disabled={disableSave}>
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={disableSave}
+          >
             Save and continue
           </button>
         </div>
