@@ -69,10 +69,12 @@ export const TransferSummary: React.FC<TransferSummaryProps> = ({
   }, []);
 
   const receiverAccount = () => {
-    if (receiverDetails.receiveAccount.type === "etransfer") {
+    if (receiverDetails?.receiveAccount?.type === "etransfer") {
       return receiverDetails.receiveAccount.details["E-transfer email"];
     }
   };
+
+  console.log(receiverDetails, "receiverDetails");
 
   return (
     <div className="summary-money-transfer-container">
