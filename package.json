@@ -1,6 +1,6 @@
 {
   "name": "crypsey-shared-ui",
-  "version": "5.30.0",
+  "version": "5.31.0",
   "description": "Shared UI components library",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
